@@ -19,7 +19,7 @@ import javax.swing.*;
 public class MyJPanel extends JPanel 
 {
     /**
-     * 
+     * Constructor for the class
      * @since version 1.00
      */
     public MyJPanel()

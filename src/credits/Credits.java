@@ -4,6 +4,8 @@ Changelog
 19 October 2014
     -1400 hours
         *initial creation
+        *created contributors for Jack, Michelle, and Nick
+        *put in code to populate the contributors from and XML document
 */
 package credits;
 

@@ -4,6 +4,10 @@ Changelog
 19 October 2014
     -1400 hours
         *initial creation
+        *created all the getters and setters
+        *used refactor to encapsulate fields
+        *created getInfo() to print info
+            - should change it to output a string later.
 */
 package credits;
 
