@@ -8,6 +8,9 @@
    <void method="add">
     <string>Contributor class</string>
    </void>
+   <void method="add">
+    <string>Setup of core classes</string>
+   </void>
   </void>
   <void property="firstName">
    <string>Jack</string>
