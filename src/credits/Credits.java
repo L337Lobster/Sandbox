@@ -7,7 +7,7 @@ Changelog
 */
 package credits;
 
-import sandbox.XML_240;
+import util.XML_240;
 
 /**
  * Java class for creating the credits in our IST 240 final project game.
