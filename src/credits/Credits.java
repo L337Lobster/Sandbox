@@ -39,7 +39,6 @@ public class Credits {
         michelle = (Contributor)x2.ReadObject();
         nick = (Contributor)x2.ReadObject();
         x2.closeReaderXML();
-        
     }
     
     
