@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.7.0_51" class="java.beans.XMLDecoder">
+ <object class="credits.Contributor">
+  <void property="contribution">
+   <void method="add">
+    <string>Credits class</string>
+   </void>
+   <void method="add">
+    <string>Contributor class</string>
+   </void>
+  </void>
+  <void property="firstName">
+   <string>Jack</string>
+  </void>
+  <void property="lastName">
+   <string>Hofmann</string>
+  </void>
+ </object>
+ <object class="credits.Contributor">
+  <void property="contribution">
+   <void method="add">
+    <string>contribution</string>
+   </void>
+  </void>
+  <void property="firstName">
+   <string>Michelle</string>
+  </void>
+  <void property="lastName">
+   <string>Kracaw</string>
+  </void>
+ </object>
+ <object class="credits.Contributor">
+  <void property="contribution">
+   <void method="add">
+    <string>contribution</string>
+   </void>
+  </void>
+  <void property="firstName">
+   <string>Nicholas</string>
+  </void>
+  <void property="lastName">
+   <string>Stegers</string>
+  </void>
+ </object>
+</java>
