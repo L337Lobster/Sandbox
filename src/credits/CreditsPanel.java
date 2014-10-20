@@ -42,7 +42,6 @@ public class CreditsPanel extends JPanel implements ActionListener{
         {
             current.add(new JLabel("<html><center>"+credits.compiledCredits.get(i)+"</center></html>", JLabel.CENTER));
         }
-        System.out.println(current.size());
         for(int i = 0; i < current.size(); i++)
         {
             in.add(500);
@@ -54,10 +53,6 @@ public class CreditsPanel extends JPanel implements ActionListener{
         
         
         fadeTimer.start();
-        for(int i =0; i < credits.compiledCredits.size(); i++)
-        {
-            System.out.println(credits.compiledCredits.get(i));
-        }
         roll = current.size();
         
         
