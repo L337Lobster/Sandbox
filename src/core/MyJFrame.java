@@ -8,6 +8,8 @@ Changelog
 
 package core;
 
+import credits.Credits;
+import credits.CreditsPanel;
 import java.awt.*;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
@@ -23,8 +25,9 @@ public class MyJFrame extends JFrame
     {
         super ("Game");
 
-
+        Credits credits = new Credits();
         MyJPanel mjp = new MyJPanel();
+        CreditsPanel mcp = new CreditsPanel(credits);
 
         getContentPane().add(mjp,"Center");
 
