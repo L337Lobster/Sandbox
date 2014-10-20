@@ -2,10 +2,13 @@
 Changelog
 =====================
 19 October 2014
-    -1400 hours
+    -1400
         *initial creation
         *created contributors for Jack, Michelle, and Nick
         *put in code to populate the contributors from and XML document
+    -2040
+        *compileCredits method added
+        *compiledCredits ArrayList added
 */
 package credits;
 
@@ -47,6 +50,9 @@ public class Credits {
         x2.closeReaderXML();
     }
     
+    /**
+     * Java method to compile the credits to list the contributions of each contributor.
+     */
     public void compileCredits()
     {
         compiledCredits.add("Credits");
