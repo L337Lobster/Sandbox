@@ -11,8 +11,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 /**
- *
- * @author Jack
+ * Java class for creating the a custom swing JPanel for the credits.
+ * @author Jackson
+ * @version 1.00
  */
 public class CreditsPanel extends JPanel implements ActionListener{
     
@@ -22,6 +23,11 @@ public class CreditsPanel extends JPanel implements ActionListener{
     JButton fade;
     int roll = 0;
     ArrayList<Integer> in = new ArrayList();
+    
+    /**
+     * Creates and displays the credits.
+     * @param credits 
+     */
     public CreditsPanel(Credits credits)
     {
         super();
