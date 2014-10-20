@@ -9,6 +9,9 @@ Changelog
     -2040
         *compileCredits method added
         *compiledCredits ArrayList added
+20 October 2014
+    -0400
+        *added some extra separators between contributors
 */
 package credits;
 
@@ -56,18 +59,21 @@ public class Credits {
     public void compileCredits()
     {
         compiledCredits.add("Credits");
+        compiledCredits.add("~~~~~~~~~~~~~~~");
         compiledCredits.add(jack.getName());
         compiledCredits.add("Contributions:");
         for(int i =0; i < jack.getContribution().size(); i++)
         {
             compiledCredits.add(jack.getContribution(i));
         }
+        compiledCredits.add("===============");
         compiledCredits.add(michelle.getName());
         compiledCredits.add("Contributions:");
         for(int i =0; i < michelle.getContribution().size(); i++)
         {
             compiledCredits.add(michelle.getContribution(i));
         }
+        compiledCredits.add("===============");
         compiledCredits.add(nick.getName());
         compiledCredits.add("Contributions:");
         for(int i =0; i < nick.getContribution().size(); i++)
