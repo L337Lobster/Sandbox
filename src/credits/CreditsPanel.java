@@ -1,8 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+Changelog
+=====================
+19 October 2014
+    -1600 hours
+        *initial creation
+20 October 2014
+    -0430
+        *added different formatting for names, contributions, and "Credits"
+*/
 package credits;
 
 import java.awt.*;
@@ -46,7 +51,21 @@ public class CreditsPanel extends JPanel implements ActionListener{
         {
             in.add(500);
             current.get(i).setForeground(Color.white);
-            current.get(i).setFont(current.get(i).getFont().deriveFont(45.0f));
+            if(credits.compiledCredits.get(i).equalsIgnoreCase("Credits"))
+            {
+                current.get(i).setFont(current.get(i).getFont().deriveFont(55.0f));
+                current.get(i).setForeground(Color.white);
+            }
+            else if(credits.compiledCredits.get(i).equalsIgnoreCase("Jackson Hofmann") || credits.compiledCredits.get(i).equalsIgnoreCase("Michelle Kracaw") || credits.compiledCredits.get(i).equalsIgnoreCase("Nicholas Stegers"))
+            {
+                current.get(i).setFont(current.get(i).getFont().deriveFont(45.0f));
+                current.get(i).setForeground(Color.cyan);
+            }
+            else
+            {
+                current.get(i).setFont(current.get(i).getFont().deriveFont(35.0f));
+                current.get(i).setForeground(Color.white);
+            }
             add(current.get(i));
             current.get(i).setBounds(new Rectangle(100, in.get(i), 400, 100));
         }
