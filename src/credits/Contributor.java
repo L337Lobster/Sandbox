@@ -8,6 +8,8 @@ Changelog
         *used refactor to encapsulate fields
         *created getInfo() to print info
             - should change it to output a string later.
+    -2000
+        *getName method added
 */
 package credits;
 
@@ -73,6 +75,15 @@ public class Contributor {
     public void setLastName(String lastName)
     {
         this.lastName = lastName;
+    }
+    
+    /**
+     * Returns the first and last name together
+     * @return first + last name
+     */
+    public String getName()
+    {
+        return firstName + " " + lastName;
     }
     /**
      * Gets the contribution at a certain spot
