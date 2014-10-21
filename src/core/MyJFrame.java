@@ -28,6 +28,11 @@ public class MyJFrame extends JFrame implements ActionListener
 {
     MyJPanel mjp;
     CreditsPanel mcp;
+    /**
+    * Constructor for class
+    * @author Jackson
+    * @version 1.00
+    */
     public MyJFrame ()
     {
         super ("Game");
@@ -44,6 +49,10 @@ public class MyJFrame extends JFrame implements ActionListener
         setSize (640, 480);
         setVisible(true);
     }
+    /**
+     * ActionPerformed listener for the class, currently removes current panel and adds credits panel upon click of a button
+     * @param e 
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();

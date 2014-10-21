@@ -26,7 +26,7 @@ public class CreditsPanel extends JPanel implements ActionListener{
     Timer fadeTimer;
     ArrayList<JLabel> current;
     int roll = 0;
-    ArrayList<Integer> in = new ArrayList();
+    ArrayList<Integer> in = new ArrayList(); //array list for the y value of each rectangle that the JLabels are in
     
     /**
      * Creates and displays the credits.
@@ -76,7 +76,10 @@ public class CreditsPanel extends JPanel implements ActionListener{
         
         
     }
-
+    /**
+     * Action listener for the panel, currently only used for the timer
+     * @param e 
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();

@@ -25,11 +25,12 @@ import util.XML_240;
  */
 public class Credits {
     
+    
+    Contributor jack, michelle, nick;
+    ArrayList<String> compiledCredits;
     /**
      * Creates multiple contributors based on an XML document.
      */
-    Contributor jack, michelle, nick;
-    ArrayList<String> compiledCredits;
     public Credits()
     {
         /* ====================================================

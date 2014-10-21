@@ -21,12 +21,12 @@ import javax.swing.*;
  */
 public class MyJPanel extends JPanel
 {
+
+    JButton rollCredits;
     /**
      * Constructor for the class
      * @since version 1.00
      */
-    JButton rollCredits;
-    
     public MyJPanel()
     {
         super();
