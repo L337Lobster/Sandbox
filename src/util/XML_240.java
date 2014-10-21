@@ -12,7 +12,8 @@ import java.io.FileOutputStream;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-/*
+
+/**
  * This class reads and writes XML files based on Java Beans DTD
  * It uses the standard Java classes
  * XMLEncoder
@@ -34,10 +35,6 @@ import javax.swing.JPanel;
  * Write an Object: x.writeObject(ANY JAVA OBJECT/INSTANCE HERE)
  * String s = "fred";
  * x.writeObject(s);
- */
-
-/**
- *
  * @author fredfonseca
  */
 public class XML_240 
