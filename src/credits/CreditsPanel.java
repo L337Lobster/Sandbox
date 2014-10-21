@@ -25,7 +25,6 @@ public class CreditsPanel extends JPanel implements ActionListener{
     Credits credits = new Credits();
     Timer fadeTimer;
     ArrayList<JLabel> current;
-    JButton fade;
     int roll = 0;
     ArrayList<Integer> in = new ArrayList();
     
