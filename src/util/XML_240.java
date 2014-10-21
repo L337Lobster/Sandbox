@@ -45,60 +45,108 @@ public class XML_240
     
     XMLEncoder xe;
     XMLDecoder de;
-
+/**
+ * Constructor for class
+ */
 public XML_240()
 {
     
     
 }
 //==========================================================================
-           public void openReaderXML(String filename)
-             {
-           try {
-              de = new XMLDecoder(new BufferedInputStream(new FileInputStream(filename)));
-             }
-           catch(Exception xx) {xx.printStackTrace();}
-             }
+    /**
+     * Opens an XML reader using the XML file defined in the String filename
+     * @param filename 
+     */
+    public void openReaderXML(String filename)
+    {
+        try 
+        {
+           de = new XMLDecoder(new BufferedInputStream(new FileInputStream(filename)));
+        }
+        catch(Exception xx) 
+        {
+            xx.printStackTrace();
+        }
+    }
 //==========================================================================
-           public void openWriterXML(String filename)
-             {
-           try {
-              xe = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(filename)));
-             }
-           catch(Exception xx) {xx.printStackTrace();}
-             }
+    /**
+     * Opens an XML writer using the XML file defined in the String filename
+     * @param filename 
+     */
+    public void openWriterXML(String filename)
+    {
+        try 
+        {
+           xe = new XMLEncoder(new BufferedOutputStream(new FileOutputStream(filename)));
+        }
+        catch(Exception xx) 
+        {
+            xx.printStackTrace();
+        }
+      }
 //==========================================================================
-           public void writeObject(Object o)
-             {
-           try {
-			 xe.writeObject(o);
-            }
-           catch(Exception xx) {xx.printStackTrace();}
-             }
+    /**
+     * Writes the Object o to file
+     * @param o 
+     */
+    public void writeObject(Object o)
+    {
+        try 
+        {
+            xe.writeObject(o);
+        }
+        catch(Exception xx) 
+        {
+            xx.printStackTrace();
+        }
+    }
 //==========================================================================
-           public Object ReadObject()
-             {
-                 Object o = new Object();
-           try {
-			o = de.readObject();
-            }
-           catch(Exception xx) {xx.printStackTrace();}
-             return o;
-             }
+    /**
+     * Reads the Object o from file
+     * @return o
+     */
+    public Object ReadObject()
+    {
+        Object o = new Object();
+        try 
+        {
+            o = de.readObject();
+        }
+        catch(Exception xx) 
+        {
+            xx.printStackTrace();
+        }
+          return o;
+    }
 //==========================================================================
-           public void closeReaderXML()
-             {
-          try {
-             de.close();
-            }
-           catch(Exception xx) {xx.printStackTrace();}
-             }
+    /**
+     * Closes the currently opened XML reader
+     */
+    public void closeReaderXML()
+    {
+        try 
+        {
+           de.close();
+        }
+        catch(Exception xx) 
+        {
+            xx.printStackTrace();
+        }
+    }
 //==========================================================================
-           public void closeWriterXML()
-             {
-          try {
-             xe.close();
-            }
-           catch(Exception xx) {xx.printStackTrace();}
-             }
+    /**
+     * Closes the currently opened XML writer
+     */
+    public void closeWriterXML()
+    {
+        try 
+        {
+            xe.close();
+        }
+        catch(Exception xx) 
+        {
+            xx.printStackTrace();
+        }
+    }
 }
