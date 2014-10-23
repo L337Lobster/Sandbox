@@ -40,13 +40,11 @@ public class MainFrame extends JFrame implements ActionListener
         Credits credits = new Credits();
         mjp = new SplashPanel();
         mcp = new CreditsPanel(credits);
-        mjp.rollCredits = new JButton("Roll Credits");
-        mjp.add(mjp.rollCredits);
-        mjp.rollCredits.addActionListener(this);
+        mjp.creditsButton.addActionListener(this);
         getContentPane().add(mjp,"Center");
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize (640, 480);
+        setSize (800, 600);
         setVisible(true);
     }
     /**
@@ -57,7 +55,7 @@ public class MainFrame extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         
-        if(obj == mjp.rollCredits) 
+        if(obj == mjp.creditsButton) 
         { 
             this.remove(mjp);
             this.add(mcp);
