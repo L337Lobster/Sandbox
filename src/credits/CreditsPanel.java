@@ -24,7 +24,6 @@ public class CreditsPanel extends JPanel implements ActionListener{
     
     Credits credits = new Credits();
     Timer fadeTimer;
-    JButton delteThis;
     ArrayList<JLabel> current;
     int roll = 0;
     ArrayList<Integer> in = new ArrayList(); //array list for the y value of each rectangle that the JLabels are in
