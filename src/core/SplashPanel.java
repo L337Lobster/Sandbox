@@ -19,7 +19,7 @@ import javax.swing.*;
  * @author Jackson
  * @version 1.00
  */
-public class MyJPanel extends JPanel
+public class SplashPanel extends JPanel
 {
 
     JButton rollCredits;
@@ -27,7 +27,7 @@ public class MyJPanel extends JPanel
      * Constructor for the class
      * @since version 1.00
      */
-    public MyJPanel()
+    public SplashPanel()
     {
         super();
         setBackground(Color.gray);

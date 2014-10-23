@@ -24,21 +24,21 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
  * @author Jackson
  * @version 1.00
  */
-public class MyJFrame extends JFrame implements ActionListener
+public class MainFrame extends JFrame implements ActionListener
 {
-    MyJPanel mjp;
+    SplashPanel mjp;
     CreditsPanel mcp;
     /**
     * Constructor for class
     * @author Jackson
     * @version 1.00
     */
-    public MyJFrame ()
+    public MainFrame ()
     {
         super ("Game");
 
         Credits credits = new Credits();
-        mjp = new MyJPanel();
+        mjp = new SplashPanel();
         mcp = new CreditsPanel(credits);
         mjp.rollCredits = new JButton("Roll Credits");
         mjp.add(mjp.rollCredits);
