@@ -22,10 +22,13 @@ public class InstructionsPanel extends JPanel
      * Constructor for the class
      * @since version 1.00
      */
+    public JButton label;
     public InstructionsPanel()
     {
         super();
         setBackground(Color.gray);
+        label = new JButton("instructions");
+        add(label);
     }
 
 

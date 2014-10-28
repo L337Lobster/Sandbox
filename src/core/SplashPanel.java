@@ -46,7 +46,10 @@ public class SplashPanel extends JPanel
         add(settingsButton);
         //setting locations of buttons
         //Rectangle(x,y,length,height)
-        creditsButton.setBounds(new Rectangle(WIDTH-100, HEIGHT-100, 100, 50));
+        creditsButton.setBounds(new Rectangle(WIDTH-125, HEIGHT-100, 100, 50));
+        startGame.setBounds(new Rectangle(((WIDTH/2)-100), ((HEIGHT/2)-100), 200, 50));
+        instructionsButton.setBounds(new Rectangle(((WIDTH/3*2)-100), ((HEIGHT/3*2)-100), 200, 50));
+        settingsButton.setBounds(new Rectangle(((WIDTH/3)-100), ((HEIGHT/3*2)-100), 200, 50));
         setBackground(Color.gray);
     }
 

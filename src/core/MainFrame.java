@@ -13,11 +13,14 @@ package core;
 
 import credits.Credits;
 import credits.CreditsPanel;
+import game.GamePanel;
+import instructions.InstructionsPanel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import settings.SettingsPanel;
 
 /**
  * Java class for creating a custom swing JFrame.
@@ -26,9 +29,12 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
  */
 public class MainFrame extends JFrame implements ActionListener
 {
-    SplashPanel mjp;
+    SplashPanel splash;
     CreditsPanel mcp;
-    int HEIGHT = 800, WIDTH = 600;
+    GamePanel game;
+    InstructionsPanel instructions;
+    SettingsPanel settings;
+    int HEIGHT = 600, WIDTH = 800;
     /**
     * Constructor for class
     * @author Jackson
@@ -38,13 +44,23 @@ public class MainFrame extends JFrame implements ActionListener
     {
         super ("Game");
         Credits credits = new Credits();
-        mjp = new SplashPanel(HEIGHT, WIDTH);
+        game = new GamePanel();
+        instructions = new InstructionsPanel();
+        settings = new SettingsPanel();
+        splash = new SplashPanel(HEIGHT, WIDTH);
         mcp = new CreditsPanel(credits, HEIGHT, WIDTH);
-        mjp.creditsButton.addActionListener(this);
-        getContentPane().add(mjp,"Center");
+        splash.creditsButton.addActionListener(this);
+        splash.startGame.addActionListener(this);
+        splash.instructionsButton.addActionListener(this);
+        splash.settingsButton.addActionListener(this);
+        game.label.addActionListener(this);
+        instructions.label.addActionListener(this);
+        settings.label.addActionListener(this);
+        mcp.label.addActionListener(this);
+        getContentPane().add(splash,"Center");
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize (HEIGHT, WIDTH);
+        setSize (new Dimension(WIDTH, HEIGHT));
         setVisible(true);
     }
     /**
@@ -55,12 +71,49 @@ public class MainFrame extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         
-        if(obj == mjp.creditsButton) 
+        if(obj == splash.creditsButton) 
         { 
-            this.remove(mjp);
-            this.add(mcp);
+            replacePanel(splash, mcp);
+        }
+        if(obj == splash.startGame)
+        {
+            replacePanel(splash,game);
+        }
+        if(obj == splash.instructionsButton)
+        {
+            replacePanel(splash,instructions);
+        }
+        if(obj == splash.settingsButton)
+        {
+            replacePanel(splash,settings);
+        }
+        if(obj == game.label)
+        {
+            replacePanel(game,splash);
+        }
+        if(obj == mcp.label)
+        {
+            replacePanel(mcp,splash);
+        }
+        if(obj == instructions.label)
+        {
+            replacePanel(instructions,splash);
+        }
+        if(obj == settings.label)
+        {
+            replacePanel(settings,splash);
+        }
+    }
+    /**
+     * Replaces the current panel with p2
+     * @param p1 panel to be removed
+     * @param p2 panel to be added
+     */
+    public void replacePanel(JPanel p1, JPanel p2)
+    {
+            this.remove(p1);
+            this.add(p2);
             this.revalidate();
             this.repaint();
-        }
     }
 }
