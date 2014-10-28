@@ -14,27 +14,28 @@ import javax.swing.JPanel;
 
 
 /**
- * This class reads and writes XML files based on Java Beans DTD
- * It uses the standard Java classes
+ * This class reads and writes XML files based on Java Beans DTD.
+ * It uses the standard Java classes:
  * XMLEncoder
- * XMLDecoder
+ * and
+ * XMLDecoder.
  * 
- * Use: create the class XML_240 x = new XML_240();
+ * Use: create the class XML_240 x = new XML_240();.
  * READER
- * Open a XML file to read: x.openReader(filename);
- * Close a XML reader file: x.closeReader();
+ * Open a XML file to read: x.openReader(filename);.
+ * Close a XML reader file: x.closeReader();.
  * 
- * Read an Object: x.readObject();
- * You need to know what TYPE of Object you are reading
- * String s = (String) x.readObject();
+ * Read an Object: x.readObject();.
+ * You need to know what TYPE of Object you are reading.
+ * String s = (String) x.readObject();.
  * 
- * WRITER
- * Open a XML file to write: x.openWriter(filename);
- * Close a XML writer file: x.closeWriter();
+ * WRITER.
+ * Open a XML file to write: x.openWriter(filename);.
+ * Close a XML writer file: x.closeWriter();.
  * 
- * Write an Object: x.writeObject(ANY JAVA OBJECT/INSTANCE HERE)
- * String s = "fred";
- * x.writeObject(s);
+ * Write an Object: x.writeObject(ANY JAVA OBJECT/INSTANCE HERE).
+ * String s = "fred";.
+ * x.writeObject(s);.
  * @author fredfonseca
  */
 public class XML_240 
@@ -53,7 +54,7 @@ public XML_240()
 //==========================================================================
     /**
      * Opens an XML reader using the XML file defined in the String filename
-     * @param filename 
+     * @param filename filename in the format document.ext
      */
     public void openReaderXML(String filename)
     {
@@ -69,7 +70,7 @@ public XML_240()
 //==========================================================================
     /**
      * Opens an XML writer using the XML file defined in the String filename
-     * @param filename 
+     * @param filename  filename in the format document.ext
      */
     public void openWriterXML(String filename)
     {
@@ -85,7 +86,7 @@ public XML_240()
 //==========================================================================
     /**
      * Writes the Object o to file
-     * @param o 
+     * @param o Object to be written
      */
     public void writeObject(Object o)
     {

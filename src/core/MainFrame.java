@@ -28,6 +28,7 @@ public class MainFrame extends JFrame implements ActionListener
 {
     SplashPanel mjp;
     CreditsPanel mcp;
+    int HEIGHT = 800, WIDTH = 600;
     /**
     * Constructor for class
     * @author Jackson
@@ -36,15 +37,14 @@ public class MainFrame extends JFrame implements ActionListener
     public MainFrame ()
     {
         super ("Game");
-
         Credits credits = new Credits();
-        mjp = new SplashPanel();
-        mcp = new CreditsPanel(credits);
+        mjp = new SplashPanel(HEIGHT, WIDTH);
+        mcp = new CreditsPanel(credits, HEIGHT, WIDTH);
         mjp.creditsButton.addActionListener(this);
         getContentPane().add(mjp,"Center");
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize (800, 600);
+        setSize (HEIGHT, WIDTH);
         setVisible(true);
     }
     /**

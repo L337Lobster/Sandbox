@@ -25,18 +25,20 @@ public class CreditsPanel extends JPanel implements ActionListener{
     Credits credits = new Credits();
     Timer fadeTimer;
     ArrayList<JLabel> current;
-    int roll = 0;
+    int roll = 0, creditsStart = 0, width = 0;
     ArrayList<Integer> in = new ArrayList(); //array list for the y value of each rectangle that the JLabels are in
     
     /**
      * Creates and displays the credits.
-     * @param credits 
+     * @param credits a variable of type Credits
      */
-    public CreditsPanel(Credits credits)
+    public CreditsPanel(Credits credits, int height, int width)
     {
         super();
         this.credits = credits;
+        creditsStart = height+100;
         current = new ArrayList();
+        this.width = width;
         setLayout(null);
         setBackground(Color.black);
         
@@ -48,7 +50,7 @@ public class CreditsPanel extends JPanel implements ActionListener{
         }
         for(int i = 0; i < current.size(); i++)
         {
-            in.add(500);
+            in.add(creditsStart);
             current.get(i).setForeground(Color.white);
             if(credits.compiledCredits.get(i).equalsIgnoreCase("Credits"))
             {
@@ -66,7 +68,7 @@ public class CreditsPanel extends JPanel implements ActionListener{
                 current.get(i).setForeground(Color.white);
             }
             add(current.get(i));
-            current.get(i).setBounds(new Rectangle(100, in.get(i), 400, 100));
+            current.get(i).setBounds(new Rectangle(100, in.get(i), width, 100));
         }
         
         
@@ -78,7 +80,7 @@ public class CreditsPanel extends JPanel implements ActionListener{
     }
     /**
      * Action listener for the panel, currently only used for the timer
-     * @param e 
+     * @param e ActionEvent
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -89,13 +91,13 @@ public class CreditsPanel extends JPanel implements ActionListener{
             {
                 for(int i = 0; i <= current.size() - roll; i++)
                 {
-                    current.get(i).setBounds(new Rectangle(100, in.get(i), 400, 100));
+                    current.get(i).setBounds(new Rectangle(100, in.get(i), width, 100));
                     if(in.get(i) > -200)
                     {
                         in.set(i, in.get(i) - 1);
                     }
                 }
-                if(in.get(current.size()-roll) < 400)
+                if(in.get(current.size()-roll) < creditsStart-100)
                 {
                     if(roll != 1)
                     {
