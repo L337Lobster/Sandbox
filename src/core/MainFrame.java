@@ -34,6 +34,7 @@ public class MainFrame extends JFrame implements ActionListener
     GamePanel game;
     InstructionsPanel instructions;
     SettingsPanel settings;
+    Credits credits;
     int HEIGHT = 600, WIDTH = 800;
     /**
     * Constructor for class
@@ -43,12 +44,12 @@ public class MainFrame extends JFrame implements ActionListener
     public MainFrame ()
     {
         super ("Game");
-        Credits credits = new Credits();
+        credits = new Credits();
         game = new GamePanel();
         instructions = new InstructionsPanel();
         settings = new SettingsPanel();
-        splash = new SplashPanel(HEIGHT, WIDTH);
         mcp = new CreditsPanel(credits, HEIGHT, WIDTH);
+        splash = new SplashPanel(HEIGHT, WIDTH);
         splash.creditsButton.addActionListener(this);
         splash.startGame.addActionListener(this);
         splash.instructionsButton.addActionListener(this);
@@ -73,6 +74,7 @@ public class MainFrame extends JFrame implements ActionListener
         
         if(obj == splash.creditsButton) 
         { 
+            mcp = new CreditsPanel(credits, HEIGHT, WIDTH);
             replacePanel(splash, mcp);
         }
         if(obj == splash.startGame)
