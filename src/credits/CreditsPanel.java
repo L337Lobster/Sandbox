@@ -37,7 +37,7 @@ public class CreditsPanel extends JPanel implements ActionListener{
     {
         super();
         this.credits = credits;
-        creditsStart = height+100;
+        creditsStart = height-50;
         current = new ArrayList();
         this.width = width-200;
         setLayout(null);
@@ -45,7 +45,7 @@ public class CreditsPanel extends JPanel implements ActionListener{
         label = new JButton("credits");
         add(label);
         credits.compileCredits();
-        fadeTimer = new Timer(10, this);
+        fadeTimer = new Timer(5, this);
         for(int i = 0; i < credits.compiledCredits.size(); i++)
         {
             current.add(new JLabel("<html><center>"+credits.compiledCredits.get(i)+"</center></html>", JLabel.CENTER));

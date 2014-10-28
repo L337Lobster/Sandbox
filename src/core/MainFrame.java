@@ -57,7 +57,6 @@ public class MainFrame extends JFrame implements ActionListener
         game.label.addActionListener(this);
         instructions.label.addActionListener(this);
         settings.label.addActionListener(this);
-        mcp.label.addActionListener(this);
         getContentPane().add(splash,"Center");
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -75,6 +74,7 @@ public class MainFrame extends JFrame implements ActionListener
         if(obj == splash.creditsButton) 
         { 
             mcp = new CreditsPanel(credits, HEIGHT, WIDTH);
+            mcp.label.addActionListener(this);
             replacePanel(splash, mcp);
         }
         if(obj == splash.startGame)
