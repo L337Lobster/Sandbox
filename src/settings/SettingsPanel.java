@@ -115,10 +115,10 @@ public class SettingsPanel extends JPanel
         switch(options.music.getSettingValue())
         {
             case "On":
-                difficultyV.setSelectedIndex(0);
+                musicV.setSelectedIndex(0);
                 break;
             case "Off":
-                difficultyV.setSelectedIndex(1);
+                musicV.setSelectedIndex(1);
                 break;
         }
     }
