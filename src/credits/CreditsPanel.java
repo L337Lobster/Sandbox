@@ -28,7 +28,7 @@ public class CreditsPanel extends JPanel implements ActionListener{
     int roll = 0;
     public int height = 0, width = 0;
     ArrayList<Integer> in = new ArrayList(); //array list for the y value of each rectangle that the JLabels are in
-    public JButton label;
+    public JButton back;
     
     /**
      * Creates and displays the credits.
@@ -43,8 +43,8 @@ public class CreditsPanel extends JPanel implements ActionListener{
         this.width = width;
         setLayout(null);
         setBackground(Color.black);
-        label = new JButton("Main Menu");
-        add(label);
+        back = new JButton("Main Menu");
+        add(back);
         credits.compileCredits();
         fadeTimer = new Timer(5, this);
         for(int i = 0; i < credits.compiledCredits.size(); i++)
@@ -117,7 +117,7 @@ public class CreditsPanel extends JPanel implements ActionListener{
                 }
             }
             else{
-                label.setBounds(new Rectangle((width/2)-100, ((height/2)-50), 200, 50));
+                back.setBounds(new Rectangle((width/2)-100, ((height/2)-50), 200, 50));
             }
         
         }

@@ -171,7 +171,7 @@ public class MainFrame extends JFrame implements ActionListener
         { 
             credits.resetBounds();
             credits = new CreditsPanel(new Credits(), HEIGHT, WIDTH);
-            credits.label.addActionListener(this);
+            credits.back.addActionListener(this);
             replacePanel(splash, credits);
         }
         if(obj == splash.startGame)
@@ -195,7 +195,7 @@ public class MainFrame extends JFrame implements ActionListener
             splash.resetBounds();
             replacePanel(game,splash);
         }
-        if(obj == credits.label)
+        if(obj == credits.back)
         {
             splash.resetBounds();
             replacePanel(credits,splash);
