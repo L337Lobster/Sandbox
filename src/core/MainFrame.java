@@ -20,7 +20,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import settings.Setting;
 import settings.SettingsPanel;
+import util.XML_240;
 
 /**
  * Java class for creating a custom swing JFrame.
@@ -30,11 +32,11 @@ import settings.SettingsPanel;
 public class MainFrame extends JFrame implements ActionListener
 {
     SplashPanel splash;
-    CreditsPanel mcp;
+    CreditsPanel credits;
     GamePanel game;
     InstructionsPanel instructions;
     SettingsPanel settings;
-    Credits credits;
+    Credits creditsList;
     int HEIGHT = 600, WIDTH = 800;
     /**
     * Constructor for class
@@ -44,24 +46,118 @@ public class MainFrame extends JFrame implements ActionListener
     public MainFrame ()
     {
         super ("Game");
-        credits = new Credits();
-        game = new GamePanel();
+        String size = getSavedSize();
+        switch(size)
+        {
+            case "800 x 600":
+                this.HEIGHT = 600;
+                this.WIDTH = 800;
+                break;
+            case "1000 x 800":
+                this.HEIGHT = 800;
+                this.WIDTH = 1000;
+                break;
+            case "1200 x 1000":
+                this.HEIGHT = 1000;
+                this.WIDTH = 1200;
+                break;
+        }
+        creditsList = new Credits();
+        game = new GamePanel(WIDTH, HEIGHT);
         instructions = new InstructionsPanel();
-        settings = new SettingsPanel();
-        mcp = new CreditsPanel(credits, HEIGHT, WIDTH);
+        settings = new SettingsPanel(WIDTH, HEIGHT);
+        credits = new CreditsPanel(creditsList, HEIGHT, WIDTH);
         splash = new SplashPanel(HEIGHT, WIDTH);
         splash.creditsButton.addActionListener(this);
         splash.startGame.addActionListener(this);
         splash.instructionsButton.addActionListener(this);
         splash.settingsButton.addActionListener(this);
-        game.label.addActionListener(this);
+        game.back.addActionListener(this);
         instructions.label.addActionListener(this);
-        settings.label.addActionListener(this);
+        settings.back.addActionListener(this);
         getContentPane().add(splash,"Center");
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize (new Dimension(WIDTH, HEIGHT));
+        this.setResizable(false);
+        refreshSize();
         setVisible(true);
+    }
+    public String getSavedSize()
+    {
+        XML_240 x2 = new XML_240();
+        x2.openReaderXML("Options.xml");
+        Setting res = (Setting)x2.ReadObject();
+        x2.closeReaderXML();
+        String size = res.getSettingValue();
+        return size;
+    }
+    public void refreshSize()
+    {
+        String size = settings.options.resolution.getSettingValue();
+        switch(size)
+        {
+            case "800 x 600":
+                this.setSize (new Dimension(800, 600));
+                WIDTH = 800;
+                HEIGHT = 600;
+                //settings panel
+                settings.width = 800;
+                settings.height = 600;
+                //splash panel
+                splash.WIDTH = 800;
+                splash.HEIGHT = 600;
+                //credits panel
+                credits.width = 600;
+                credits.height = 550;
+                //game panel
+                game.width = 800;
+                game.height = 600;
+                //instructions panel
+                instructions.width = 800;
+                instructions.height = 600;
+                break;
+            case "1000 x 800":
+                WIDTH = 1000;
+                HEIGHT = 800;
+                //settings panel
+                settings.width = 1000;
+                settings.height = 800;
+                //splash panel
+                splash.WIDTH = 1000;
+                splash.HEIGHT = 800;
+                //credits panel
+                credits.width = 800;
+                credits.height = 750;
+                //game panel
+                game.width = 1000;
+                game.height = 800;
+                //instructions panel
+                instructions.width = 1000;
+                instructions.height = 800;
+                this.setSize (new Dimension(1000, 800));
+                break;
+            case "1200 x 1000":
+                WIDTH = 1200;
+                HEIGHT = 1000;
+                //settings panel
+                settings.width = 1200;
+                settings.height = 1000;
+                //splash panel
+                splash.WIDTH = 1200;
+                splash.HEIGHT = 1000;
+                //credits panel
+                credits.width = 1000;
+                credits.height = 950;
+                //game panel
+                game.width = 1200;
+                game.height = 1000;
+                //instructions panel
+                instructions.width = 1200;
+                instructions.height = 1000;
+                this.setSize (new Dimension(1200, 1000));
+                break;
+        }
+        this.setLocationRelativeTo(null);
     }
     /**
      * ActionPerformed listener for the class, currently removes current panel and adds credits panel upon click of a button
@@ -73,36 +169,46 @@ public class MainFrame extends JFrame implements ActionListener
         
         if(obj == splash.creditsButton) 
         { 
-            mcp = new CreditsPanel(credits, HEIGHT, WIDTH);
-            mcp.label.addActionListener(this);
-            replacePanel(splash, mcp);
+            credits.resetBounds();
+            credits = new CreditsPanel(new Credits(), HEIGHT, WIDTH);
+            credits.label.addActionListener(this);
+            replacePanel(splash, credits);
         }
         if(obj == splash.startGame)
         {
+            game.loadSettings();
+            game.resetBounds();
             replacePanel(splash,game);
         }
         if(obj == splash.instructionsButton)
         {
+            instructions.resetBounds();
             replacePanel(splash,instructions);
         }
         if(obj == splash.settingsButton)
         {
+            settings.resetBounds();
             replacePanel(splash,settings);
         }
-        if(obj == game.label)
+        if(obj == game.back)
         {
+            splash.resetBounds();
             replacePanel(game,splash);
         }
-        if(obj == mcp.label)
+        if(obj == credits.label)
         {
-            replacePanel(mcp,splash);
+            splash.resetBounds();
+            replacePanel(credits,splash);
         }
         if(obj == instructions.label)
         {
+            splash.resetBounds();
             replacePanel(instructions,splash);
         }
-        if(obj == settings.label)
+        if(obj == settings.back)
         {
+            refreshSize();
+            splash.resetBounds();
             replacePanel(settings,splash);
         }
     }

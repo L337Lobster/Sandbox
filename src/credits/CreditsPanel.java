@@ -25,7 +25,8 @@ public class CreditsPanel extends JPanel implements ActionListener{
     Credits credits = new Credits();
     Timer fadeTimer;
     ArrayList<JLabel> current;
-    int roll = 0, creditsStart = 0, width = 0;
+    int roll = 0;
+    public int height = 0, width = 0;
     ArrayList<Integer> in = new ArrayList(); //array list for the y value of each rectangle that the JLabels are in
     public JButton label;
     
@@ -37,12 +38,12 @@ public class CreditsPanel extends JPanel implements ActionListener{
     {
         super();
         this.credits = credits;
-        creditsStart = height-50;
+        this.height = height;
         current = new ArrayList();
-        this.width = width-200;
+        this.width = width;
         setLayout(null);
         setBackground(Color.black);
-        label = new JButton("credits");
+        label = new JButton("Main Menu");
         add(label);
         credits.compileCredits();
         fadeTimer = new Timer(5, this);
@@ -52,7 +53,7 @@ public class CreditsPanel extends JPanel implements ActionListener{
         }
         for(int i = 0; i < current.size(); i++)
         {
-            in.add(creditsStart);
+            in.add(height);
             current.get(i).setForeground(Color.white);
             if(credits.compiledCredits.get(i).equalsIgnoreCase("Credits"))
             {
@@ -70,7 +71,7 @@ public class CreditsPanel extends JPanel implements ActionListener{
                 current.get(i).setForeground(Color.white);
             }
             add(current.get(i));
-            current.get(i).setBounds(new Rectangle(100, in.get(i), width, 100));
+            current.get(i).setBounds(new Rectangle(0, in.get(i), width, 100));
         }
         
         
@@ -79,6 +80,14 @@ public class CreditsPanel extends JPanel implements ActionListener{
         
         
         
+    }
+    public void resetBounds()
+    {
+        for(int i = 0; i < current.size(); i++)
+        {
+            in.set(i, height);
+            current.get(i).setBounds(new Rectangle(0, in.get(i), width, 100));
+        }
     }
     /**
      * Action listener for the panel, currently only used for the timer
@@ -93,13 +102,13 @@ public class CreditsPanel extends JPanel implements ActionListener{
             {
                 for(int i = 0; i <= current.size() - roll; i++)
                 {
-                    current.get(i).setBounds(new Rectangle(100, in.get(i), width, 100));
+                    current.get(i).setBounds(new Rectangle(0, in.get(i), width, 100));
                     if(in.get(i) > -200)
                     {
                         in.set(i, in.get(i) - 1);
                     }
                 }
-                if(in.get(current.size()-roll) < creditsStart-100)
+                if(in.get(current.size()-roll) < height-100)
                 {
                     if(roll != 1)
                     {
@@ -108,7 +117,7 @@ public class CreditsPanel extends JPanel implements ActionListener{
                 }
             }
             else{
-                label.setBounds(new Rectangle(((width/2)-100), (((creditsStart-100)/2)-100), 200, 50));
+                label.setBounds(new Rectangle((width/2)-100, ((height/2)-50), 200, 50));
             }
         
         }

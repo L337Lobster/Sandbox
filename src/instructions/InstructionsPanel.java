@@ -23,12 +23,17 @@ public class InstructionsPanel extends JPanel
      * @since version 1.00
      */
     public JButton label;
+    public int width, height;
     public InstructionsPanel()
     {
         super();
         setBackground(Color.gray);
         label = new JButton("instructions");
         add(label);
+    }
+    public void resetBounds()
+    {
+        
     }
 
 

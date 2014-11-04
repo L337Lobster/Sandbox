@@ -23,7 +23,7 @@ public class SplashPanel extends JPanel
 {
 
     JButton creditsButton, startGame, instructionsButton, settingsButton;
-    int HEIGHT = 0, WIDTH = 0;
+    public int HEIGHT = 0, WIDTH = 0;
     /**
      * Constructor for the class
      * @since version 1.00
@@ -51,6 +51,14 @@ public class SplashPanel extends JPanel
         instructionsButton.setBounds(new Rectangle(((WIDTH/3*2)-100), ((HEIGHT/3*2)-100), 200, 50));
         settingsButton.setBounds(new Rectangle(((WIDTH/3)-100), ((HEIGHT/3*2)-100), 200, 50));
         setBackground(Color.gray);
+    }
+    
+    public void resetBounds()
+    {
+        creditsButton.setBounds(new Rectangle(WIDTH-125, HEIGHT-100, 100, 50));
+        startGame.setBounds(new Rectangle(((WIDTH/2)-100), ((HEIGHT/2)-100), 200, 50));
+        instructionsButton.setBounds(new Rectangle(((WIDTH/3*2)-100), ((HEIGHT/3*2)-100), 200, 50));
+        settingsButton.setBounds(new Rectangle(((WIDTH/3)-100), ((HEIGHT/3*2)-100), 200, 50));
     }
 
 
