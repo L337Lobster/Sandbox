@@ -73,7 +73,7 @@ public class MainFrame extends JFrame implements ActionListener
         splash.instructionsButton.addActionListener(this);
         splash.settingsButton.addActionListener(this);
         game.back.addActionListener(this);
-        instructions.label.addActionListener(this);
+        instructions.back.addActionListener(this);
         settings.back.addActionListener(this);
         getContentPane().add(splash,"Center");
 
@@ -200,7 +200,7 @@ public class MainFrame extends JFrame implements ActionListener
             splash.resetBounds();
             replacePanel(credits,splash);
         }
-        if(obj == instructions.label)
+        if(obj == instructions.back)
         {
             splash.resetBounds();
             replacePanel(instructions,splash);
