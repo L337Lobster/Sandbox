@@ -39,7 +39,7 @@ public class Setting {
     }
     /**
      * Sets the name of the setting
-     * @param name 
+     * @param name String value for the name of the setting
      */
     public void setSettingName(String name)
     {
@@ -47,7 +47,7 @@ public class Setting {
     }
     /**
      * Sets the value of the setting
-     * @param value 
+     * @param value String value for the value of the setting
      */
     public void setSettingValue(String value)
     {

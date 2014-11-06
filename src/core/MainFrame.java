@@ -171,7 +171,7 @@ public class MainFrame extends JFrame implements ActionListener
     }
     /**
      * ActionPerformed listener for the class, currently removes current panel and adds credits panel upon click of a button
-     * @param e 
+     * @param e ActionEvent for the listener
      */
     @Override
     public void actionPerformed(ActionEvent e) {
