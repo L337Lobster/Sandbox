@@ -15,27 +15,24 @@ import javax.swing.JPanel;
 
 /**
  * This class reads and writes XML files based on Java Beans DTD.
- * It uses the standard Java classes:
- * XMLEncoder
- * and
- * XMLDecoder.
- * 
- * Use: create the class XML_240 x = new XML_240();.
- * READER
- * Open a XML file to read: x.openReader(filename);.
- * Close a XML reader file: x.closeReader();.
- * 
- * Read an Object: x.readObject();.
- * You need to know what TYPE of Object you are reading.
- * String s = (String) x.readObject();.
- * 
- * WRITER.
- * Open a XML file to write: x.openWriter(filename);.
- * Close a XML writer file: x.closeWriter();.
- * 
- * Write an Object: x.writeObject(ANY JAVA OBJECT/INSTANCE HERE).
- * String s = "fred";.
- * x.writeObject(s);.
+ * <br>It uses the standard Java classes:
+ * <ul>
+ * <li>XMLEncoder
+ * <li>XMLDecoder
+ * </ul>
+ * <h3>Use: create the class XML_240 x = new XML_240();</h3>
+ * <h4>READER</h4>
+ * <br>Open a XML file to read: x.openReader(filename);.
+ * <br>Close a XML reader file: x.closeReader();.
+ * <br>Read an Object: x.readObject();.
+ * <br>You need to know what TYPE of Object you are reading.
+ * <br>String s = (String) x.readObject();.
+ * <h4>WRITER</h4>
+ * <br>Open a XML file to write: x.openWriter(filename);.
+ * <br>Close a XML writer file: x.closeWriter();.
+ * <br>Write an Object: x.writeObject(ANY JAVA OBJECT/INSTANCE HERE).
+ * <br>String s = "fred";.
+ * <br>x.writeObject(s);.
  * @author fredfonseca
  */
 public class XML_240 
