@@ -24,13 +24,21 @@ public class InstructionsPanel extends JPanel
      */
     public JButton back;
     public int width, height;
-    public InstructionsPanel()
+    /**
+     * Constructor for the Instructions panel
+     * @param width Width of the parent JFrame
+     * @param height Height of the parent JFrame
+     */
+    public InstructionsPanel(int width, int height)
     {
         super();
         setBackground(Color.gray);
         back = new JButton("instructions");
         add(back);
     }
+    /**
+     * Repositions the panel's components after a resize.
+     */
     public void resetBounds()
     {
         

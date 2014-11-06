@@ -12,7 +12,9 @@ import util.XML_240;
  * @author Jack
  */
 public class Options {
-    
+    /**
+     * Settings for the game.
+     */
     public Setting resolution, difficulty, music;
     XML_240 x2;
     Options()

@@ -49,7 +49,9 @@ public class GamePanel extends JPanel
         
         
     }
-    
+    /**
+     * Repositions the panel's components after a resize.
+     */
     public void resetBounds()
     {
         back.setBounds(new Rectangle((width/2)-100,(height/4*3)-50,200, 50));
@@ -60,7 +62,9 @@ public class GamePanel extends JPanel
         resolutionL.setText("Resolution: " + resolution.getSettingValue());
         musicL.setText("Music: " + music.getSettingValue());
     }
-    
+    /**
+     * Read the resolution, difficulty, and music settings from file.
+     */
     public void loadSettings()
     {
         XML_240 x2 = new XML_240();

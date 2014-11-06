@@ -64,7 +64,7 @@ public class MainFrame extends JFrame implements ActionListener
         }
         creditsList = new Credits();
         game = new GamePanel(WIDTH, HEIGHT);
-        instructions = new InstructionsPanel();
+        instructions = new InstructionsPanel(WIDTH, HEIGHT);
         settings = new SettingsPanel(WIDTH, HEIGHT);
         credits = new CreditsPanel(creditsList, HEIGHT, WIDTH);
         splash = new SplashPanel(HEIGHT, WIDTH);
@@ -82,6 +82,11 @@ public class MainFrame extends JFrame implements ActionListener
         refreshSize();
         setVisible(true);
     }
+    
+    /**
+     * Returns the currently set resolution by reading it from the settings XML file.
+     * @return size
+     */
     public String getSavedSize()
     {
         XML_240 x2 = new XML_240();
@@ -91,6 +96,11 @@ public class MainFrame extends JFrame implements ActionListener
         String size = res.getSettingValue();
         return size;
     }
+    /**
+     * Changes the size of the window to the current resolution.
+     * Also updates the width and height in all of the panels.
+     * The panel width and heights are used for positioning of components.
+     */
     public void refreshSize()
     {
         String size = settings.options.resolution.getSettingValue();

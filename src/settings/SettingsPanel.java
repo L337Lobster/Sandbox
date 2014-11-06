@@ -31,6 +31,11 @@ public class SettingsPanel extends JPanel
     public Options options;
     JLabel difficultyL, resolutionL, musicL;
     public int width, height;
+    /**
+     * Constructor for the Settings panel
+     * @param width Width of the parent JFrame.
+     * @param height Height of the parent JFrame.
+     */
     public SettingsPanel(int width, int height)
     {
         super();
@@ -74,6 +79,9 @@ public class SettingsPanel extends JPanel
         save.addActionListener(saveListener);
         add(save);
     }
+    /**
+     * Repositions the panel's components after a resize.
+     */
     public void resetBounds()
     {
         difficultyV.setBounds(new Rectangle(((width/4)-50), ((height/2)-100),100,25));
@@ -122,10 +130,18 @@ public class SettingsPanel extends JPanel
                 break;
         }
     }
+    /**
+     * Anonymous class that is an ActionListener for the Save Settings button.
+     * This will write the settings to file when the Save button is pressed.
+     */
     public class SaveListener implements ActionListener
     {
 
         @Override
+        /**
+         * Writes the currently selected settings to file when the save button is pressed.
+         * @param e the ActionEvent for the listener
+         */
         public void actionPerformed(ActionEvent e) {
             String resolution, difficulty, music;
             difficulty = (String)difficultyV.getSelectedItem();

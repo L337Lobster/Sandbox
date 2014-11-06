@@ -33,6 +33,8 @@ public class CreditsPanel extends JPanel implements ActionListener{
     /**
      * Creates and displays the credits.
      * @param credits a variable of type Credits
+     * @param height Height of the parent JFrame
+     * @param width Width of the parent JFrame
      */
     public CreditsPanel(Credits credits, int height, int width)
     {
@@ -81,6 +83,9 @@ public class CreditsPanel extends JPanel implements ActionListener{
         
         
     }
+    /**
+     * Repositions the panel's components after a resize.
+     */
     public void resetBounds()
     {
         for(int i = 0; i < current.size(); i++)

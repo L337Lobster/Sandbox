@@ -26,6 +26,8 @@ public class SplashPanel extends JPanel
     public int HEIGHT = 0, WIDTH = 0;
     /**
      * Constructor for the class
+     * @param height Height of the parent JFrame
+     * @param width Width of the parent JFrame
      * @since version 1.00
      */
     public SplashPanel(int height, int width)
@@ -52,7 +54,9 @@ public class SplashPanel extends JPanel
         settingsButton.setBounds(new Rectangle(((WIDTH/3)-100), ((HEIGHT/3*2)-100), 200, 50));
         setBackground(Color.gray);
     }
-    
+    /**
+     * Repositions the panel's components after a resize.
+     */
     public void resetBounds()
     {
         creditsButton.setBounds(new Rectangle(WIDTH-125, HEIGHT-100, 100, 50));
