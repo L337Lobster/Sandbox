@@ -8,7 +8,8 @@ package settings;
 import util.XML_240;
 
 /**
- *
+ * Class for creating the options for the game.
+ * Options are objects that hold the currently loaded value for specific options.
  * @author Jack
  */
 public class Options {

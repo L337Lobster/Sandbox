@@ -6,7 +6,8 @@
 package settings;
 
 /**
- *
+ * Class that creates Settings Objects.
+ * Individual Setting Objects hold the values for specific options.
  * @author Jack
  */
 public class Setting {
