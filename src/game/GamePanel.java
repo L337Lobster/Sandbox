@@ -8,6 +8,8 @@ package game;
 
 import core.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +23,7 @@ import util.XML_240;
  * @author Jackson
  * @version 1.00
  */
-public class GamePanel extends JPanel
+public class GamePanel extends JPanel implements ActionListener
 {
     /**
      * Constructor for the class
@@ -32,7 +34,13 @@ public class GamePanel extends JPanel
     Setting music, difficulty, resolution;
     JLabel difficultyL, resolutionL, musicL;
     Music psuMedly;
+    Timer tim;
+    int delay = 10,x=50, y=50;
+    boolean movingUp;
+    
+    
     public GamePanel(int width, int height)
+    
     {
         super();
         try {
@@ -56,7 +64,9 @@ public class GamePanel extends JPanel
         add(musicL);
         add(difficultyL);
         add(resolutionL);
-        
+        tim = new Timer(delay, this);
+        tim.start();
+        movingUp=false;
         
     }
     public Music getMusic()
@@ -90,5 +100,37 @@ public class GamePanel extends JPanel
         
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object obj = e.getSource();
+        if (obj == tim)
+        {
+            if (y>=height-80) 
+            {
+                movingUp = true;                
+            }
+            else if (y<height/2)
+            {
+                movingUp = false;
+            }
+            if(movingUp)
+            {
+                y-= 3;
+                this.repaint();
+            }
+            if(!movingUp)
+            {
+                y+=3;
+                this.repaint();
+            }
+        }
+        
+    }
+
+    public void paintComponent(Graphics g)
+    {
+        super.paintComponent(g);
+        g.fillOval(x, y, 50, 50);
+    }
 	
 }
