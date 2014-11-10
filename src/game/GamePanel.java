@@ -8,6 +8,10 @@ package game;
 
 import core.*;
 import java.awt.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import settings.Setting;
 import util.XML_240;
@@ -27,9 +31,15 @@ public class GamePanel extends JPanel
     public int width, height;
     Setting music, difficulty, resolution;
     JLabel difficultyL, resolutionL, musicL;
+    Music psuMedly;
     public GamePanel(int width, int height)
     {
         super();
+        try {
+            psuMedly = new Music("fightOn");
+        } catch (IOException ex) {
+            Logger.getLogger(GamePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.width = width;
         this.height = height;
         setBackground(Color.gray);
@@ -48,6 +58,10 @@ public class GamePanel extends JPanel
         add(resolutionL);
         
         
+    }
+    public Music getMusic()
+    {
+        return this.psuMedly;
     }
     /**
      * Repositions the panel's components after a resize.

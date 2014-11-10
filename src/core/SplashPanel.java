@@ -11,8 +11,14 @@ Changelog
 
 package core;
 
+import game.Music;
 import java.awt.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
+import settings.Setting;
+import util.XML_240;
 
 /**
  * Java class for creating the a custom swing JPanel.
@@ -23,6 +29,9 @@ public class SplashPanel extends JPanel
 {
 
     JButton creditsButton, startGame, instructionsButton, settingsButton;
+    Music hey;
+    Setting music;
+    XML_240 x2;
     public int HEIGHT = 0, WIDTH = 0;
     /**
      * Constructor for the class
@@ -33,6 +42,12 @@ public class SplashPanel extends JPanel
     public SplashPanel(int height, int width)
     {
         super();
+        try {
+            hey = new Music("hey");
+        } catch (IOException ex) {
+            Logger.getLogger(SplashPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        x2 = new XML_240();
         setLayout(null);
         HEIGHT = height;
         WIDTH = width;
@@ -53,6 +68,11 @@ public class SplashPanel extends JPanel
         instructionsButton.setBounds(new Rectangle(((WIDTH/3*2)-100), ((HEIGHT/3*2)-100), 200, 50));
         settingsButton.setBounds(new Rectangle(((WIDTH/3)-100), ((HEIGHT/3*2)-100), 200, 50));
         setBackground(Color.gray);
+        loadMusic();
+    }
+    public Music getMusic()
+    {
+        return this.hey;
     }
     /**
      * Repositions the panel's components after a resize.
@@ -63,6 +83,23 @@ public class SplashPanel extends JPanel
         startGame.setBounds(new Rectangle(((WIDTH/2)-100), ((HEIGHT/2)-100), 200, 50));
         instructionsButton.setBounds(new Rectangle(((WIDTH/3*2)-100), ((HEIGHT/3*2)-100), 200, 50));
         settingsButton.setBounds(new Rectangle(((WIDTH/3)-100), ((HEIGHT/3*2)-100), 200, 50));
+    }
+    public void loadMusic()
+    {
+        x2.openReaderXML("Options.xml");
+        x2.ReadObject();
+        x2.ReadObject();
+        music = (Setting)x2.ReadObject();
+        x2.closeReaderXML();
+        
+        if(music.getSettingValue().equalsIgnoreCase("on"))
+        {
+            hey.startSound();
+        }
+        else
+        {
+            hey.stopSound();
+        }
     }
 
 

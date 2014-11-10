@@ -15,7 +15,11 @@ Changelog
 */
 package credits;
 
+import game.Music;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.XML_240;
 
 /**
@@ -28,15 +32,12 @@ public class Credits {
     
     Contributor jack, michelle, nick;
     ArrayList<String> compiledCredits;
+    Music almaMater;
     /**
      * Creates multiple contributors based on an XML document.
      */
     public Credits()
     {
-        /* ====================================================
-         * This section creates the new instances of the contributors and the XML_240 class
-         * ====================================================
-         */
         compiledCredits = new ArrayList();
         jack = new Contributor();
         michelle = new Contributor();

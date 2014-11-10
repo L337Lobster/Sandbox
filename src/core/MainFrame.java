@@ -37,6 +37,9 @@ public class MainFrame extends JFrame implements ActionListener
     InstructionsPanel instructions;
     SettingsPanel settings;
     Credits creditsList;
+    Setting music;
+    boolean musicOn;
+    XML_240 x2;
     int HEIGHT = 600, WIDTH = 800;
     /**
     * Constructor for class
@@ -46,6 +49,7 @@ public class MainFrame extends JFrame implements ActionListener
     public MainFrame ()
     {
         super ("Game");
+        x2 = new XML_240();
         String size = getSavedSize();
         switch(size)
         {
@@ -62,6 +66,7 @@ public class MainFrame extends JFrame implements ActionListener
                 this.WIDTH = 1200;
                 break;
         }
+        loadMusic();
         creditsList = new Credits();
         game = new GamePanel(WIDTH, HEIGHT);
         instructions = new InstructionsPanel(WIDTH, HEIGHT);
@@ -76,13 +81,27 @@ public class MainFrame extends JFrame implements ActionListener
         instructions.back.addActionListener(this);
         settings.back.addActionListener(this);
         getContentPane().add(splash,"Center");
-
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
         refreshSize();
         setVisible(true);
     }
-    
+    public void loadMusic()
+    {
+        x2.openReaderXML("Options.xml");
+        x2.ReadObject();
+        x2.ReadObject();
+        music = (Setting) x2.ReadObject();
+        x2.closeReaderXML();
+        if(music.getSettingValue().equalsIgnoreCase("on"))
+        {
+            musicOn = true;
+        }
+        else
+        {
+            musicOn = false;
+        }
+    }
     /**
      * Returns the currently set resolution by reading it from the settings XML file.
      * @return size
@@ -176,18 +195,35 @@ public class MainFrame extends JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
-        
         if(obj == splash.creditsButton) 
         { 
             credits.resetBounds();
             credits = new CreditsPanel(new Credits(), HEIGHT, WIDTH);
             credits.back.addActionListener(this);
+            if(musicOn)
+            {
+                splash.getMusic().stopSound();
+                credits.getMusic().startSound();
+            }
+            else
+            {
+                splash.getMusic().stopSound();
+            }
             replacePanel(splash, credits);
         }
         if(obj == splash.startGame)
         {
             game.loadSettings();
             game.resetBounds();
+            if(musicOn)
+            {
+                splash.getMusic().stopSound();
+                game.getMusic().startSound();
+            }
+            else
+            {
+                splash.getMusic().stopSound();
+            }
             replacePanel(splash,game);
         }
         if(obj == splash.instructionsButton)
@@ -203,11 +239,29 @@ public class MainFrame extends JFrame implements ActionListener
         if(obj == game.back)
         {
             splash.resetBounds();
+            if(musicOn)
+            {
+                splash.getMusic().startSound();
+                game.getMusic().stopSound();
+            }
+            else
+            {
+                game.getMusic().stopSound();
+            }
             replacePanel(game,splash);
         }
         if(obj == credits.back)
         {
             splash.resetBounds();
+            if(musicOn)
+            {
+                credits.getMusic().stopSound();
+                splash.getMusic().startSound();
+            }
+            else
+            {
+                credits.getMusic().stopSound();
+            }
             replacePanel(credits,splash);
         }
         if(obj == instructions.back)

@@ -10,10 +10,14 @@ Changelog
 */
 package credits;
 
+import game.Music;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 /**
  * Java class for creating the a custom swing JPanel for the credits.
@@ -25,6 +29,7 @@ public class CreditsPanel extends JPanel implements ActionListener{
     Credits credits = new Credits();
     Timer fadeTimer;
     ArrayList<JLabel> current;
+    Music almaMater;
     int roll = 0;
     public int height = 0, width = 0;
     ArrayList<Integer> in = new ArrayList(); //array list for the y value of each rectangle that the JLabels are in
@@ -37,8 +42,13 @@ public class CreditsPanel extends JPanel implements ActionListener{
      * @param width Width of the parent JFrame
      */
     public CreditsPanel(Credits credits, int height, int width)
-    {
+    {        
         super();
+        try {
+            almaMater = new Music("almaMater");
+        } catch (IOException ex) {
+            Logger.getLogger(Credits.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.credits = credits;
         this.height = height;
         current = new ArrayList();
@@ -82,6 +92,10 @@ public class CreditsPanel extends JPanel implements ActionListener{
         
         
         
+    }
+    public Music getMusic()
+    {
+        return this.almaMater;
     }
     /**
      * Repositions the panel's components after a resize.
