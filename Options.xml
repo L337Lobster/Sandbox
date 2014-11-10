@@ -13,7 +13,7 @@
    <string>Difficulty</string>
   </void>
   <void property="settingValue">
-   <string>Medium</string>
+   <string>Easy</string>
   </void>
  </object>
  <object class="settings.Setting">

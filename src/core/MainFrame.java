@@ -195,6 +195,7 @@ public class MainFrame extends JFrame implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
+        loadMusic();
         if(obj == splash.creditsButton) 
         { 
             credits.resetBounds();
@@ -215,6 +216,7 @@ public class MainFrame extends JFrame implements ActionListener
         {
             game.loadSettings();
             game.resetBounds();
+            game.setDifficulty();
             if(musicOn)
             {
                 splash.getMusic().stopSound();
@@ -273,6 +275,14 @@ public class MainFrame extends JFrame implements ActionListener
         {
             refreshSize();
             splash.resetBounds();
+            if(!musicOn)
+            {
+                splash.getMusic().stopSound();
+            }
+            else
+            {
+                splash.getMusic().startSound();
+            }
             replacePanel(settings,splash);
         }
     }

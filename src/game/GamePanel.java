@@ -35,7 +35,7 @@ public class GamePanel extends JPanel implements ActionListener
     JLabel difficultyL, resolutionL, musicL;
     Music psuMedly;
     Timer tim;
-    int delay = 10,x=50, y=50;
+    int delay = 10,x, y, difficultyInt;
     boolean movingUp;
     
     
@@ -50,7 +50,9 @@ public class GamePanel extends JPanel implements ActionListener
         }
         this.width = width;
         this.height = height;
-        setBackground(Color.gray);
+        x = 50;
+        y = height/2;
+        setBackground(Color.white);
         setLayout(null);
         back = new JButton("Main Menu");
         add(back);
@@ -67,7 +69,23 @@ public class GamePanel extends JPanel implements ActionListener
         tim = new Timer(delay, this);
         tim.start();
         movingUp=false;
+        setDifficulty();
         
+    }
+    public void setDifficulty()
+    {
+        switch(difficulty.getSettingValue())
+        {
+            case "Easy":
+                difficultyInt = 1;
+                break;
+            case "Medium":
+                difficultyInt = 3;
+                break;
+            case "Hard":
+                difficultyInt = 10;
+                break;
+        }
     }
     public Music getMusic()
     {
@@ -115,12 +133,12 @@ public class GamePanel extends JPanel implements ActionListener
             }
             if(movingUp)
             {
-                y-= 3;
+                y-= difficultyInt;
                 this.repaint();
             }
             if(!movingUp)
             {
-                y+=3;
+                y+=difficultyInt;
                 this.repaint();
             }
         }
@@ -130,6 +148,7 @@ public class GamePanel extends JPanel implements ActionListener
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
+        g.setColor(new Color(0,23,105));
         g.fillOval(x, y, 50, 50);
     }
 	
