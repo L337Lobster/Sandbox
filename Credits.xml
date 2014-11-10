@@ -9,7 +9,16 @@
     <string>Contributor class</string>
    </void>
    <void method="add">
-    <string>Setup of core classes</string>
+    <string>Setup of core Panels</string>
+   </void>
+   <void method="add">
+    <string>Music Class</string>
+   </void>
+   <void method="add">
+    <string>Settings Class</string>
+   </void>
+   <void method="add">
+    <string>Option Class</string>
    </void>
   </void>
   <void property="firstName">
