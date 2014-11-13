@@ -13,7 +13,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import settings.Setting;
 import util.XML_240;
@@ -35,7 +34,8 @@ public class GamePanel extends JPanel implements ActionListener
     JLabel difficultyL, resolutionL, musicL;
     Music psuMedly;
     Timer tim;
-    int delay = 10,x, y, difficultyInt;
+    JComponent player, blocker;
+    int delay = 10,x, y, difficultyInt,block1;
     boolean movingUp;
     
     
@@ -50,8 +50,11 @@ public class GamePanel extends JPanel implements ActionListener
         }
         this.width = width;
         this.height = height;
+        player = new JLabel();
+        blocker = new JLabel();
         x = 50;
         y = height/2;
+        block1 = width;
         setBackground(Color.white);
         setLayout(null);
         back = new JButton("Main Menu");
@@ -123,6 +126,9 @@ public class GamePanel extends JPanel implements ActionListener
         Object obj = e.getSource();
         if (obj == tim)
         {
+            player.setBounds(new Rectangle(x,y,50,50));
+            int x1=block1, y1=height-125, x2=50, y2=100;
+            blocker.setBounds(new Rectangle(x1, y1, x2, y2));
             if (y>=height-80) 
             {
                 movingUp = true;                
@@ -141,6 +147,18 @@ public class GamePanel extends JPanel implements ActionListener
                 y+=difficultyInt;
                 this.repaint();
             }
+            if(block1 < -60)
+            {
+                block1 = width;
+            }
+            if(block1 > -65)
+            {
+                block1-=5;
+            }
+            if(player.bounds().intersects(blocker.bounds()))
+            {
+                JOptionPane.showMessageDialog(GamePanel.this,"You hit him, how dare you!");
+            }
         }
         
     }
@@ -148,8 +166,11 @@ public class GamePanel extends JPanel implements ActionListener
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        g.setColor(new Color(0,23,105));
+        g.setColor(CustomColor.PSU_DARK.toColor());
         g.fillOval(x, y, 50, 50);
+        int x1=block1, y1=height-125, x2=50, y2=100;
+        g.setColor(CustomColor.OHIO_RED.toColor());
+        g.fillRect(x1, y1, x2, y2);
     }
 	
 }
