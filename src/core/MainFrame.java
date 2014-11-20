@@ -227,6 +227,9 @@ public class MainFrame extends JFrame implements ActionListener
                 splash.getMusic().stopSound();
             }
             replacePanel(splash,game);
+            game.x = 50;
+            game.y = game.height/2;
+            game.tim.start();
         }
         if(obj == splash.instructionsButton)
         {

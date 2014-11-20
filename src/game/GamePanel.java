@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
@@ -31,11 +32,14 @@ public class GamePanel extends JPanel implements ActionListener
     public JButton back;
     public int width, height;
     Setting music, difficulty, resolution;
-    JLabel difficultyL, resolutionL, musicL;
+    JLabel difficultyL;
     Music psuMedly;
-    Timer tim;
-    JComponent player, blocker;
-    int delay = 10,x, y, difficultyInt,block1;
+    public Timer tim;
+    Rectangle player;
+    int delay = 10, difficultyInt;
+    public int x,y;
+    ArrayList<Integer> blockerPos;
+    ArrayList<Rectangle> blockerRect;
     boolean movingUp;
     
     
@@ -50,32 +54,28 @@ public class GamePanel extends JPanel implements ActionListener
         }
         this.width = width;
         this.height = height;
-        player = new JLabel();
-        blocker = new JLabel();
+        player = new Rectangle();
         x = 50;
         y = height/2;
-        block1 = width;
+        blockerPos = new ArrayList();
+        for(int i = 0; i < 10; i++)
+        {
+            blockerPos.add(width);
+        }
         setBackground(Color.white);
         setLayout(null);
         back = new JButton("Main Menu");
         add(back);
         loadSettings();
         difficultyL = new JLabel("Difficulty: " + difficulty.getSettingValue());
-        resolutionL = new JLabel("Resolution: " + resolution.getSettingValue());
-        musicL = new JLabel("Music: " + music.getSettingValue());
-        musicL.setFont(musicL.getFont().deriveFont(20.0f));
-        resolutionL.setFont(resolutionL.getFont().deriveFont(20.0f));
         difficultyL.setFont(difficultyL.getFont().deriveFont(20.0f));
-        add(musicL);
         add(difficultyL);
-        add(resolutionL);
         tim = new Timer(delay, this);
-        tim.start();
         movingUp=false;
         setDifficulty();
         
     }
-    public void setDifficulty()
+    public final void setDifficulty()
     {
         switch(difficulty.getSettingValue())
         {
@@ -99,18 +99,14 @@ public class GamePanel extends JPanel implements ActionListener
      */
     public void resetBounds()
     {
-        back.setBounds(new Rectangle((width/2)-100,(height/4*3)-50,200, 50));
-        difficultyL.setBounds(new Rectangle((width/4)-50, (height/2)-100, 200, 25));
-        musicL.setBounds(new Rectangle((width/4*2)-50, (height/2)-100, 100, 25));
-        resolutionL.setBounds(new Rectangle((width/4*3)-50, (height/2)-100, 300, 25));
+        back.setBounds(new Rectangle(width-207,0,200, 50));
+        difficultyL.setBounds(new Rectangle(0, 0, 200, 25));
         difficultyL.setText("Difficulty: " + difficulty.getSettingValue());
-        resolutionL.setText("Resolution: " + resolution.getSettingValue());
-        musicL.setText("Music: " + music.getSettingValue());
     }
     /**
      * Read the resolution, difficulty, and music settings from file.
      */
-    public void loadSettings()
+    public final void loadSettings()
     {
         XML_240 x2 = new XML_240();
         x2.openReaderXML("Options.xml");
@@ -127,7 +123,11 @@ public class GamePanel extends JPanel implements ActionListener
         if (obj == tim)
         {
             player.setBounds(new Rectangle(x,y,50,50));
-            int x1=block1, y1=height-125, x2=50, y2=100;
+            int x1=width, y1=height-125, x2=50, y2=100;
+            for(int i = 0; i < blockers.size(); i++)
+            {
+                
+            }
             blocker.setBounds(new Rectangle(x1, y1, x2, y2));
             if (y>=height-80) 
             {
@@ -147,17 +147,22 @@ public class GamePanel extends JPanel implements ActionListener
                 y+=difficultyInt;
                 this.repaint();
             }
-            if(block1 < -60)
+            for(int i = 0; i < blockerPos.size(); i++)
             {
-                block1 = width;
+                if(blockerPos.get(i) < -60)
+                {
+                    blockerPos.set(i, width);
+                }
+                if(blockerPos.get(i) > -65)
+                {
+                    blockerPos.set(i, blockerPos.get(i)-5);;
+                }
             }
-            if(block1 > -65)
-            {
-                block1-=5;
-            }
-            if(player.bounds().intersects(blocker.bounds()))
+            if(player.intersects(blocker))
             {
                 JOptionPane.showMessageDialog(GamePanel.this,"You hit him, how dare you!");
+                back.doClick();
+                tim.stop();
             }
         }
         
