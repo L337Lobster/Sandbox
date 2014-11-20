@@ -18,6 +18,8 @@ import instructions.InstructionsPanel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import settings.Setting;
@@ -80,6 +82,9 @@ public class MainFrame extends JFrame implements ActionListener
         game.back.addActionListener(this);
         instructions.back.addActionListener(this);
         settings.back.addActionListener(this);
+        PlayerListener playerMoving = new PlayerListener();
+        game.setFocusable(true);
+        game.addKeyListener(playerMoving);
         getContentPane().add(splash,"Center");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
@@ -227,8 +232,8 @@ public class MainFrame extends JFrame implements ActionListener
                 splash.getMusic().stopSound();
             }
             replacePanel(splash,game);
-            game.x = 50;
-            game.y = game.height/2;
+            game.requestFocus();
+            game.resetGame();
             game.tim.start();
         }
         if(obj == splash.instructionsButton)
@@ -300,5 +305,27 @@ public class MainFrame extends JFrame implements ActionListener
             this.add(p2);
             this.revalidate();
             this.repaint();
+    }
+    
+    class PlayerListener implements KeyListener
+    {
+
+        @Override
+        public void keyTyped(KeyEvent ke) {
+            
+        }
+
+        @Override
+        public void keyPressed(KeyEvent ke) 
+        {
+            game.playerMoving = false;
+        }
+
+        @Override
+        public void keyReleased(KeyEvent ke) 
+        {
+            game.playerMoving = true;
+        }
+        
     }
 }

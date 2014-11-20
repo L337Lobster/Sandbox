@@ -5,7 +5,7 @@
    <string>Resolution</string>
   </void>
   <void property="settingValue">
-   <string>1200 x 1000</string>
+   <string>800 x 600</string>
   </void>
  </object>
  <object class="settings.Setting">
@@ -13,7 +13,7 @@
    <string>Difficulty</string>
   </void>
   <void property="settingValue">
-   <string>Hard</string>
+   <string>Easy</string>
   </void>
  </object>
  <object class="settings.Setting">
@@ -21,7 +21,7 @@
    <string>Music</string>
   </void>
   <void property="settingValue">
-   <string>On</string>
+   <string>Off</string>
   </void>
  </object>
 </java>

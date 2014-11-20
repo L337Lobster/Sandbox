@@ -10,6 +10,8 @@ import core.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -38,8 +40,11 @@ public class GamePanel extends JPanel implements ActionListener
     Rectangle player;
     int delay = 10, difficultyInt;
     public int x,y;
+    int x1, y1, x2=50, y2=100;
     ArrayList<Integer> blockerPos;
     ArrayList<Rectangle> blockerRect;
+    ArrayList<Boolean> lastBlocker;
+    public boolean playerMoving = true;
     boolean movingUp;
     
     
@@ -57,10 +62,28 @@ public class GamePanel extends JPanel implements ActionListener
         player = new Rectangle();
         x = 50;
         y = height/2;
+        x1 = width;
+        y1=height-125;
         blockerPos = new ArrayList();
+        int add = width;
+        blockerRect = new ArrayList();
+        lastBlocker = new ArrayList();
         for(int i = 0; i < 10; i++)
         {
-            blockerPos.add(width);
+            blockerPos.add(add);
+            if(i > 0)
+            {
+                add = blockerPos.get(i-1)+275;
+            }
+            blockerRect.add(new Rectangle());
+            if(i < 9)
+            {
+                lastBlocker.add(false);
+            }
+            else
+            {
+                lastBlocker.add(true);
+            }
         }
         setBackground(Color.white);
         setLayout(null);
@@ -116,19 +139,37 @@ public class GamePanel extends JPanel implements ActionListener
         x2.closeReaderXML();
         
     }
-
+    public void resetGame()
+    {
+        
+        x = 50;
+        y = height/2;
+        int add = width;
+        for(int i = 0; i < 10; i++)
+        {
+            blockerPos.set(i,add);
+            if(i > 0)
+            {
+                add = blockerPos.get(i-1)+275;
+            }
+        }
+        for(int i = 0; i < 10; i++)
+        {
+            blockerRect.set(i,new Rectangle());
+        }
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         if (obj == tim)
         {
             player.setBounds(new Rectangle(x,y,50,50));
-            int x1=width, y1=height-125, x2=50, y2=100;
-            for(int i = 0; i < blockers.size(); i++)
+            
+            for(int i = 0; i < blockerRect.size(); i++)
             {
-                
+                blockerRect.set(i, new Rectangle(blockerPos.get(i), y1, x2, y2));
             }
-            blocker.setBounds(new Rectangle(x1, y1, x2, y2));
+            
             if (y>=height-80) 
             {
                 movingUp = true;                
@@ -137,33 +178,52 @@ public class GamePanel extends JPanel implements ActionListener
             {
                 movingUp = false;
             }
-            if(movingUp)
+            if(movingUp && playerMoving)
             {
                 y-= difficultyInt;
-                this.repaint();
             }
-            if(!movingUp)
+            if(!movingUp && playerMoving)
             {
                 y+=difficultyInt;
-                this.repaint();
             }
             for(int i = 0; i < blockerPos.size(); i++)
             {
                 if(blockerPos.get(i) < -60)
                 {
-                    blockerPos.set(i, width);
+                    int j;
+                    for(j = 0; j < lastBlocker.size(); j++)
+                    {
+                        if(lastBlocker.get(j))
+                        {
+                            lastBlocker.set(j, false);
+                            if(j == lastBlocker.size()-1)
+                            {
+                                lastBlocker.set(0, true);
+                            }
+                            else
+                            {
+                                lastBlocker.set(j+1, true);
+                            }
+                            System.out.println(j);
+                            break;
+                        }
+                    }
+                    blockerPos.set(i, blockerPos.get(j)+275);
                 }
                 if(blockerPos.get(i) > -65)
                 {
-                    blockerPos.set(i, blockerPos.get(i)-5);;
+                    blockerPos.set(i, blockerPos.get(i)-difficultyInt);;
+                }
+                if(player.intersects(blockerRect.get(i)))
+                {
+                    JOptionPane.showMessageDialog(GamePanel.this,"You hit him, how dare you!");
+                    back.doClick();
+                    tim.stop();
+                    resetGame();
                 }
             }
-            if(player.intersects(blocker))
-            {
-                JOptionPane.showMessageDialog(GamePanel.this,"You hit him, how dare you!");
-                back.doClick();
-                tim.stop();
-            }
+            this.repaint();
+            
         }
         
     }
@@ -173,9 +233,13 @@ public class GamePanel extends JPanel implements ActionListener
         super.paintComponent(g);
         g.setColor(CustomColor.PSU_DARK.toColor());
         g.fillOval(x, y, 50, 50);
-        int x1=block1, y1=height-125, x2=50, y2=100;
+        int x1=blockerPos.get(0), y1=height-125, x2=50, y2=100;
         g.setColor(CustomColor.OHIO_RED.toColor());
-        g.fillRect(x1, y1, x2, y2);
+        for(int i = 0; i < blockerPos.size();i++)
+        {
+            x1 = blockerPos.get(i);
+            g.fillRect(x1, y1, x2, y2);
+        }
     }
 	
 }
