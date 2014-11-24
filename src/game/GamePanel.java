@@ -66,9 +66,9 @@ public class GamePanel extends JPanel implements ActionListener
         score = 0;
         player = new Rectangle();
         x = 50;
-        y = height/2;
-        x1 = width;
-        y1=height-125;
+        y = this.height-400;
+        x1 = this.width;
+        y1 = this.height-125;
         blockerPos = new ArrayList();
         int add = width;
         blockerRect = new ArrayList();
@@ -161,6 +161,7 @@ public class GamePanel extends JPanel implements ActionListener
         penalty = 10;
         y = height/2;
         score = 0;
+        playerMoving = true;
         scoreUpdate();
         int add = width;
         for(int i = 0; i < blockerPos.size(); i++)
@@ -228,7 +229,7 @@ public class GamePanel extends JPanel implements ActionListener
             {
                 movingUp = true;                
             }
-            else if (y<height/2)
+            else if (y<height-400)
             {
                 movingUp = false;
             }
@@ -283,12 +284,12 @@ public class GamePanel extends JPanel implements ActionListener
         
     }
 
+    @Override
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
         g.setColor(CustomColor.PSU_DARK.toColor());
         g.fillOval(x, y, 50, 50);
-        int x1=blockerPos.get(0), y1=height-125, x2=50, y2=100;
         g.setColor(currentColor);
         for(int i = 0; i < blockerPos.size();i++)
         {
