@@ -34,17 +34,20 @@ public class GamePanel extends JPanel implements ActionListener
     public JButton back;
     public int width, height;
     Setting music, difficulty, resolution;
-    JLabel difficultyL;
+    JLabel difficultyL, scoreL;
+    public JLabel penaltyL;
     Music psuMedly;
-    public Timer tim;
+    public Timer tim, penaltyT;
     Rectangle player;
-    int delay = 10, difficultyInt;
-    public int x,y;
+    int delay = 10, difficultyInt, blockerDifficulty, score;
+    final int BLOCK_OFFSET = 500;
+    public int x,y, penalty;
     int x1, y1, x2=50, y2=100;
     ArrayList<Integer> blockerPos;
     ArrayList<Rectangle> blockerRect;
     ArrayList<Boolean> lastBlocker;
-    public boolean playerMoving = true;
+    Color currentColor;
+    public boolean playerMoving = true, penaltyHit = false;
     boolean movingUp;
     
     
@@ -59,6 +62,8 @@ public class GamePanel extends JPanel implements ActionListener
         }
         this.width = width;
         this.height = height;
+        currentColor = CustomColor.OHIO_RED.toColor();
+        score = 0;
         player = new Rectangle();
         x = 50;
         y = height/2;
@@ -68,15 +73,12 @@ public class GamePanel extends JPanel implements ActionListener
         int add = width;
         blockerRect = new ArrayList();
         lastBlocker = new ArrayList();
-        for(int i = 0; i < 10; i++)
+        for(int i = 0; i < 4; i++)
         {
             blockerPos.add(add);
-            if(i > 0)
-            {
-                add = blockerPos.get(i-1)+275;
-            }
+            add+=BLOCK_OFFSET;
             blockerRect.add(new Rectangle());
-            if(i < 9)
+            if(i < 3)
             {
                 lastBlocker.add(false);
             }
@@ -90,10 +92,18 @@ public class GamePanel extends JPanel implements ActionListener
         back = new JButton("Main Menu");
         add(back);
         loadSettings();
+        scoreL = new JLabel("Score: " + score);
+        scoreL.setFont(scoreL.getFont().deriveFont(20.0f));
         difficultyL = new JLabel("Difficulty: " + difficulty.getSettingValue());
         difficultyL.setFont(difficultyL.getFont().deriveFont(20.0f));
+        penalty = 10;
+        penaltyL = new JLabel("Penalty Timer: " + penalty);
+        penaltyL.setFont(penaltyL.getFont().deriveFont(20.0f));
         add(difficultyL);
+        add(scoreL);
+        add(penaltyL);
         tim = new Timer(delay, this);
+        penaltyT = new Timer(200, this);
         movingUp=false;
         setDifficulty();
         
@@ -103,13 +113,16 @@ public class GamePanel extends JPanel implements ActionListener
         switch(difficulty.getSettingValue())
         {
             case "Easy":
-                difficultyInt = 1;
+                difficultyInt = 3;
+                blockerDifficulty = 2;
                 break;
             case "Medium":
-                difficultyInt = 3;
+                difficultyInt = 5;
+                blockerDifficulty = 3;
                 break;
             case "Hard":
-                difficultyInt = 10;
+                difficultyInt = 15;
+                blockerDifficulty = 10;
                 break;
         }
     }
@@ -124,6 +137,8 @@ public class GamePanel extends JPanel implements ActionListener
     {
         back.setBounds(new Rectangle(width-207,0,200, 50));
         difficultyL.setBounds(new Rectangle(0, 0, 200, 25));
+        scoreL.setBounds(new Rectangle((width/2)-75, -15, 200,50));
+        penaltyL.setBounds(new Rectangle((width/2)-75, 20, 200,50));
         difficultyL.setText("Difficulty: " + difficulty.getSettingValue());
     }
     /**
@@ -141,35 +156,74 @@ public class GamePanel extends JPanel implements ActionListener
     }
     public void resetGame()
     {
-        
+        penaltyHit = false;
         x = 50;
+        penalty = 10;
         y = height/2;
+        score = 0;
+        scoreUpdate();
         int add = width;
-        for(int i = 0; i < 10; i++)
+        for(int i = 0; i < blockerPos.size(); i++)
         {
             blockerPos.set(i,add);
-            if(i > 0)
-            {
-                add = blockerPos.get(i-1)+275;
-            }
-        }
-        for(int i = 0; i < 10; i++)
-        {
+            add +=BLOCK_OFFSET;
             blockerRect.set(i,new Rectangle());
         }
+    }
+    void changeColor(int score)
+    {
+        if(score == 0)
+        {
+            currentColor = CustomColor.OHIO_RED.toColor();
+        }
+        if(score % 10 == 0)
+        {
+            currentColor = CustomColor.MICHIGAN_YELLOW.toColor();
+        }
+        if(score % 20 == 0)
+        {
+            currentColor = CustomColor.NORTHWESTERN_PURPLE.toColor();
+        }
+        if(score % 30 == 0)
+        {
+            currentColor = CustomColor.OHIO_RED.toColor();
+        }
+    }
+    void scoreUpdate()
+    {
+        scoreL.setText("Score: " + score);
+        changeColor(score);
+        if(score != 0 && (score % 10) == 0)
+            {
+                difficultyInt+=2;
+                blockerDifficulty+=3;
+            }
     }
     @Override
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
+        if(obj == penaltyT)
+        {
+            penaltyHit = true;
+            penalty--;
+            penaltyL.setText("Penalty Timer: " + penalty);
+        }
         if (obj == tim)
         {
             player.setBounds(new Rectangle(x,y,50,50));
-            
+            if(penalty <= 0)
+            {
+                penaltyT.stop();
+                penalty = 10;
+                score--;
+                scoreUpdate();
+                penaltyL.setText("Penalty Timer: " + penalty);
+                playerMoving = true;
+            }
             for(int i = 0; i < blockerRect.size(); i++)
             {
                 blockerRect.set(i, new Rectangle(blockerPos.get(i), y1, x2, y2));
             }
-            
             if (y>=height-80) 
             {
                 movingUp = true;                
@@ -190,6 +244,8 @@ public class GamePanel extends JPanel implements ActionListener
             {
                 if(blockerPos.get(i) < -60)
                 {
+                    score++;
+                    scoreUpdate();
                     int j;
                     for(j = 0; j < lastBlocker.size(); j++)
                     {
@@ -204,15 +260,14 @@ public class GamePanel extends JPanel implements ActionListener
                             {
                                 lastBlocker.set(j+1, true);
                             }
-                            System.out.println(j);
                             break;
                         }
                     }
-                    blockerPos.set(i, blockerPos.get(j)+275);
+                    blockerPos.set(i, blockerPos.get(j)+BLOCK_OFFSET);
                 }
                 if(blockerPos.get(i) > -65)
                 {
-                    blockerPos.set(i, blockerPos.get(i)-difficultyInt);;
+                    blockerPos.set(i, blockerPos.get(i)-blockerDifficulty);;
                 }
                 if(player.intersects(blockerRect.get(i)))
                 {
@@ -234,7 +289,7 @@ public class GamePanel extends JPanel implements ActionListener
         g.setColor(CustomColor.PSU_DARK.toColor());
         g.fillOval(x, y, 50, 50);
         int x1=blockerPos.get(0), y1=height-125, x2=50, y2=100;
-        g.setColor(CustomColor.OHIO_RED.toColor());
+        g.setColor(currentColor);
         for(int i = 0; i < blockerPos.size();i++)
         {
             x1 = blockerPos.get(i);

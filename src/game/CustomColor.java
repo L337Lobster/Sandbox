@@ -15,7 +15,9 @@ import java.awt.Color;
 public enum CustomColor {
     
     PSU_DARK(0, 23, 105),
-    OHIO_RED(187,0,0);
+    OHIO_RED(187,0,0),
+    MICHIGAN_YELLOW(255,204,51),
+    NORTHWESTERN_PURPLE(82,0,99);
     
     public int r, g, b;
     

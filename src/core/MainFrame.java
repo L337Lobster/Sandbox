@@ -318,12 +318,20 @@ public class MainFrame extends JFrame implements ActionListener
         @Override
         public void keyPressed(KeyEvent ke) 
         {
-            game.playerMoving = false;
+            if(!game.penaltyHit)
+            {
+                game.penaltyT.start();
+                game.playerMoving = false;
+            }
         }
 
         @Override
         public void keyReleased(KeyEvent ke) 
         {
+            game.penaltyHit = false;
+            game.penaltyT.stop();
+            game.penalty = 10;
+            game.penaltyL.setText("Penalty Timer: " + game.penalty);
             game.playerMoving = true;
         }
         
