@@ -6,17 +6,13 @@ Changelog
 
 package game;
 
-import core.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import javax.swing.*;
+import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.*;
 import settings.Setting;
 import util.XML_240;
 
@@ -49,6 +45,7 @@ public class GamePanel extends JPanel implements ActionListener
     Color currentColor;
     public boolean playerMoving = true, penaltyHit = false;
     boolean movingUp;
+    
     
     
     public GamePanel(int width, int height)
@@ -164,11 +161,22 @@ public class GamePanel extends JPanel implements ActionListener
         playerMoving = true;
         scoreUpdate();
         int add = width;
-        for(int i = 0; i < blockerPos.size(); i++)
+        blockerPos.clear();
+        blockerRect.clear();
+        lastBlocker.clear();
+        for(int i = 0; i < 4; i++)
         {
-            blockerPos.set(i,add);
-            add +=BLOCK_OFFSET;
-            blockerRect.set(i,new Rectangle());
+            blockerPos.add(add);
+            add+=BLOCK_OFFSET;
+            blockerRect.add(new Rectangle());
+            if(i < 3)
+            {
+                lastBlocker.add(false);
+            }
+            else
+            {
+                lastBlocker.add(true);
+            }
         }
     }
     void changeColor(int score)
@@ -288,13 +296,17 @@ public class GamePanel extends JPanel implements ActionListener
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
+        Image playerHelmet = Toolkit.getDefaultToolkit().getImage("images/helmet.png");
+        Image blockerImage = Toolkit.getDefaultToolkit().getImage("images/ohiostateplayer.png");
         g.setColor(CustomColor.PSU_DARK.toColor());
-        g.fillOval(x, y, 50, 50);
+        g.drawImage(playerHelmet, x, y, this);
+        //g.fillOval(x, y, 50, 50);
         g.setColor(currentColor);
         for(int i = 0; i < blockerPos.size();i++)
         {
             x1 = blockerPos.get(i);
             g.fillRect(x1, y1, x2, y2);
+            g.drawImage(blockerImage, x1, y1, this);
         }
     }
 	
