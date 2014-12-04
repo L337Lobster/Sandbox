@@ -249,6 +249,8 @@ public class MainFrame extends JFrame implements ActionListener
         if(obj == game.back)
         {
             splash.resetBounds();
+            game.tim.stop();
+            game.resetGame();
             if(musicOn)
             {
                 splash.getMusic().startSound();

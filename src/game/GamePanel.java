@@ -164,6 +164,7 @@ public class GamePanel extends JPanel implements ActionListener
         blockerPos.clear();
         blockerRect.clear();
         lastBlocker.clear();
+        y1 = this.height-125;
         for(int i = 0; i < 4; i++)
         {
             blockerPos.add(add);
@@ -237,7 +238,7 @@ public class GamePanel extends JPanel implements ActionListener
             {
                 movingUp = true;                
             }
-            else if (y<height-400)
+            else if (y< (height/3))
             {
                 movingUp = false;
             }
@@ -282,8 +283,6 @@ public class GamePanel extends JPanel implements ActionListener
                 {
                     JOptionPane.showMessageDialog(GamePanel.this,"You hit him, how dare you!");
                     back.doClick();
-                    tim.stop();
-                    resetGame();
                 }
             }
             this.repaint();

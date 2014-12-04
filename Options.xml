@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.8.0_25" class="java.beans.XMLDecoder">
+<java version="1.7.0_65" class="java.beans.XMLDecoder">
  <object class="settings.Setting">
   <void property="settingName">
    <string>Resolution</string>
   </void>
   <void property="settingValue">
-   <string>1200 x 1000</string>
+   <string>800 x 600</string>
   </void>
  </object>
  <object class="settings.Setting">
@@ -13,7 +13,7 @@
    <string>Difficulty</string>
   </void>
   <void property="settingValue">
-   <string>Medium</string>
+   <string>Easy</string>
   </void>
  </object>
  <object class="settings.Setting">

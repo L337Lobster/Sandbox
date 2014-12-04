@@ -31,7 +31,12 @@
  <object class="credits.Contributor">
   <void property="contribution">
    <void method="add">
-    <string>contribution</string>
+    <string>Created and added sprites</string>
+   </void>
+  </void>
+  <void property="contribution">
+   <void method="add">
+    <string>Helped make player move</string>
    </void>
   </void>
   <void property="firstName">
@@ -44,7 +49,17 @@
  <object class="credits.Contributor">
   <void property="contribution">
    <void method="add">
-    <string>contribution</string>
+    <string>Core idea</string>
+   </void>
+  </void>
+  <void property="contribution">
+   <void method="add">
+    <string>Helped make player move</string>
+   </void>
+  </void>
+  <void property="contribution">
+   <void method="add">
+    <string>Penalty idea and code</string>
    </void>
   </void>
   <void property="firstName">
