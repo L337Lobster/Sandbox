@@ -18,6 +18,7 @@ public class Options {
      */
     public Setting resolution, difficulty, music;
     XML_240 x2;
+    
     Options()
     {
         resolution = new Setting();

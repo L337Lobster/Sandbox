@@ -5,7 +5,7 @@
    <string>Resolution</string>
   </void>
   <void property="settingValue">
-   <string>1000 x 800</string>
+   <string>800 x 600</string>
   </void>
  </object>
  <object class="settings.Setting">

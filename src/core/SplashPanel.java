@@ -30,7 +30,7 @@ public class SplashPanel extends JPanel
 
     JButton creditsButton, startGame, instructionsButton, settingsButton;
     Music hey;
-    Setting music;
+    Setting music, resolution;
     XML_240 x2;
     public int HEIGHT = 0, WIDTH = 0;
     /**
@@ -87,7 +87,7 @@ public class SplashPanel extends JPanel
     public void loadMusic()
     {
         x2.openReaderXML("Options.xml");
-        x2.ReadObject();
+        resolution = (Setting)x2.ReadObject();
         x2.ReadObject();
         music = (Setting)x2.ReadObject();
         x2.closeReaderXML();
@@ -100,6 +100,26 @@ public class SplashPanel extends JPanel
         {
             hey.stopSound();
         }
+    }
+    public void paintComponent(Graphics g)
+    {
+        super.paintComponent(g);
+        Image bg_big = Toolkit.getDefaultToolkit().getImage("images/menuBG_big.jpg");
+        Image bg_med = Toolkit.getDefaultToolkit().getImage("images/menuBG_med.jpg");
+        Image bg_sm = Toolkit.getDefaultToolkit().getImage("images/menuBG_sm.jpg");
+        switch(resolution.getSettingValue())
+        {
+            case "1200 x 1000":
+                g.drawImage(bg_big, 0, 0, this);
+                break;
+            case "1000 x 800":
+                g.drawImage(bg_med, 0, 0, this);
+                break;
+            case "800 x 600":
+                g.drawImage(bg_sm, 0, 0, this);
+                break;
+        }
+        
     }
 
 

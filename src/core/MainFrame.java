@@ -239,6 +239,7 @@ public class MainFrame extends JFrame implements ActionListener
         if(obj == splash.instructionsButton)
         {
             instructions.resetBounds();
+            instructions.resolution.setSettingValue(settings.options.resolution.getSettingValue());
             replacePanel(splash,instructions);
         }
         if(obj == splash.settingsButton)
@@ -294,6 +295,8 @@ public class MainFrame extends JFrame implements ActionListener
                 splash.getMusic().startSound();
             }
             replacePanel(settings,splash);
+            splash.resolution.setSettingValue(settings.options.resolution.getSettingValue());
+            splash.repaint();
         }
     }
     /**

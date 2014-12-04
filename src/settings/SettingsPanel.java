@@ -27,6 +27,7 @@ public class SettingsPanel extends JPanel
      */
     public JButton back, save;
     JComboBox resolutionV, difficultyV, musicV;
+    Setting resolution;
     XML_240 x2;
     public Options options;
     JLabel difficultyL, resolutionL, musicL;
@@ -44,11 +45,11 @@ public class SettingsPanel extends JPanel
         x2 = new XML_240();
         //String arrays for the different option comboboxes
         String[] difficulties = {"Easy", "Medium", "Hard"};
-        String[] resolutions = { "640 x 360", "800 x 450", "960 x 540"};
+        String[] resolutions = { "1200 x 1000", "1000 x 800", "800 x 600"};
         String[] musics = { "On", "Off"};
         //change layout
         setLayout(null);
-        
+        loadRes();
         setBackground(Color.gray);
         //back button, takes you to main menu
         back = new JButton("Main Menu");
@@ -94,13 +95,13 @@ public class SettingsPanel extends JPanel
         save.setBounds(new Rectangle((width/3*2)-100, height/2, 200,50));
         switch(options.resolution.getSettingValue())
         {
-            case "640 x 360":
+            case "1200 x 1000":
                 resolutionV.setSelectedIndex(0);
                 break;
-            case "800 x 450":
+            case "1000 x 800":
                 resolutionV.setSelectedIndex(1);
                 break;
-            case "960 x 540":
+            case "800 x 600":
                 resolutionV.setSelectedIndex(2);
                 break;
         }
@@ -157,6 +158,35 @@ public class SettingsPanel extends JPanel
             x2.closeWriterXML();
             JOptionPane.showMessageDialog(SettingsPanel.this,"Save Successful!");
             
+        }
+        
+    }
+    public void loadRes()
+    {
+        XML_240 x2 = new XML_240();
+        x2.openReaderXML("Options.xml");
+        resolution = (Setting)x2.ReadObject();
+        x2.ReadObject();
+        x2.ReadObject();
+        x2.closeReaderXML();
+    }
+    public void paintComponent(Graphics g)
+    {
+        super.paintComponent(g);
+        Image bg_big = Toolkit.getDefaultToolkit().getImage("images/menuBG_big.jpg");
+        Image bg_med = Toolkit.getDefaultToolkit().getImage("images/menuBG_med.jpg");
+        Image bg_sm = Toolkit.getDefaultToolkit().getImage("images/menuBG_sm.jpg");
+        switch(resolution.getSettingValue())
+        {
+            case "1200 x 1000":
+                g.drawImage(bg_big, 0, 0, this);
+                break;
+            case "1000 x 800":
+                g.drawImage(bg_med, 0, 0, this);
+                break;
+            case "800 x 600":
+                g.drawImage(bg_sm, 0, 0, this);
+                break;
         }
         
     }
