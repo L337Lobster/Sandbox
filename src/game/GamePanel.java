@@ -285,12 +285,9 @@ public class GamePanel extends JPanel implements ActionListener
                     back.doClick();
                 }
             }
-            this.repaint();
-            
-        }
-        
+            this.repaint();            
+        }        
     }
-
     @Override
     public void paintComponent(Graphics g)
     {
@@ -307,6 +304,5 @@ public class GamePanel extends JPanel implements ActionListener
             g.fillRect(x1, y1, x2, y2);
             g.drawImage(blockerImage, x1, y1, this);
         }
-    }
-	
+    }	
 }

@@ -44,7 +44,7 @@ public class SettingsPanel extends JPanel
         x2 = new XML_240();
         //String arrays for the different option comboboxes
         String[] difficulties = {"Easy", "Medium", "Hard"};
-        String[] resolutions = { "800 x 600", "1000 x 800", "1200 x 1000"};
+        String[] resolutions = { "640 x 360", "800 x 450", "960 x 540"};
         String[] musics = { "On", "Off"};
         //change layout
         setLayout(null);
@@ -94,13 +94,13 @@ public class SettingsPanel extends JPanel
         save.setBounds(new Rectangle((width/3*2)-100, height/2, 200,50));
         switch(options.resolution.getSettingValue())
         {
-            case "800 x 600":
+            case "640 x 360":
                 resolutionV.setSelectedIndex(0);
                 break;
-            case "1000 x 800":
+            case "800 x 450":
                 resolutionV.setSelectedIndex(1);
                 break;
-            case "1200 x 1000":
+            case "960 x 540":
                 resolutionV.setSelectedIndex(2);
                 break;
         }
