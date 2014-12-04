@@ -7,6 +7,7 @@ Changelog
 package settings;
 
 import core.*;
+import game.CustomColor;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -73,12 +74,16 @@ public class SettingsPanel extends JPanel
         add(difficultyV);
         add(resolutionV);
         add(musicV);
+        musicL.setForeground(CustomColor.PSU_DARK.toColor());
+        difficultyL.setForeground(CustomColor.PSU_DARK.toColor());
+        resolutionL.setForeground(CustomColor.PSU_DARK.toColor());
         
         //save settings button
         save = new JButton("Save Settings");
         SaveListener saveListener = new SaveListener();
         save.addActionListener(saveListener);
         add(save);
+        resetBounds();
     }
     /**
      * Repositions the panel's components after a resize.
@@ -188,7 +193,10 @@ public class SettingsPanel extends JPanel
                 g.drawImage(bg_sm, 0, 0, this);
                 break;
         }
-        
+        g.setColor(Color.white);
+        g.fillRect(((width/4)-50), ((height/2)-125),60,25);
+        g.fillRect(((width/4*2)-50), ((height/2)-125),70,25);
+        g.fillRect((width/4*3)-50, ((height/2)-125),40,25);
     }
 
 	

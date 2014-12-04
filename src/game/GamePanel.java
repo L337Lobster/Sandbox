@@ -96,6 +96,8 @@ public class GamePanel extends JPanel implements ActionListener
         penalty = 10;
         penaltyL = new JLabel("Penalty Timer: " + penalty);
         penaltyL.setFont(penaltyL.getFont().deriveFont(20.0f));
+        penaltyL.setForeground(CustomColor.PSU_DARK.toColor());
+        scoreL.setForeground(CustomColor.PSU_DARK.toColor());
         add(difficultyL);
         add(scoreL);
         add(penaltyL);
@@ -292,6 +294,24 @@ public class GamePanel extends JPanel implements ActionListener
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
+        Image bg_big = Toolkit.getDefaultToolkit().getImage("images/gmae_big.png");
+        Image bg_med = Toolkit.getDefaultToolkit().getImage("images/game_med.png");
+        Image bg_sm = Toolkit.getDefaultToolkit().getImage("images/game_sm.png");
+        switch(resolution.getSettingValue())
+        {
+            case "1200 x 1000":
+                g.drawImage(bg_big, 0, 0, this);
+                break;
+            case "1000 x 800":
+                g.drawImage(bg_med, 0, 0, this);
+                break;
+            case "800 x 600":
+                g.drawImage(bg_sm, 0, 0, this);
+                break;
+        }
+        g.setColor(Color.white);
+        g.fillRect((width/2)-75, 35, 175,25);
+        g.fillRect((width/2)-75, 0, 100,25);
         Image playerHelmet = Toolkit.getDefaultToolkit().getImage("images/helmet.png");
         Image blockerImage = Toolkit.getDefaultToolkit().getImage("images/ohiostateplayer.png");
         g.setColor(CustomColor.PSU_DARK.toColor());
