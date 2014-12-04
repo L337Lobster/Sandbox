@@ -21,6 +21,11 @@
     <string>Option Class</string>
    </void>
   </void>
+  <void property="contribution">
+   <void method="add">
+    <string>Music</string>
+   </void>
+  </void>
   <void property="firstName">
    <string>Jackson</string>
   </void>
@@ -37,6 +42,11 @@
   <void property="contribution">
    <void method="add">
     <string>Helped make player move</string>
+   </void>
+  </void>
+  <void property="contribution">
+   <void method="add">
+    <string>Instructions panel</string>
    </void>
   </void>
   <void property="firstName">
