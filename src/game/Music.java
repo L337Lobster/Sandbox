@@ -6,10 +6,15 @@
 
 package game;
 
-    import  sun.audio.*;    //import the sun.audio package
-    import  java.io.*;
+import  java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import static javax.sound.sampled.Clip.LOOP_CONTINUOUSLY;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  *
@@ -18,22 +23,17 @@ import java.util.logging.Logger;
 public class Music {
     
 
-    //** add this into your application code as appropriate
-    // Open an input stream  to the audio file.
-    InputStream in;
-    // Create an AudioStream object from the input stream.
-    AudioStream as;      
-    AudioData data;
-    // Create ContinuousAudioDataStream.
-    ContinuousAudioDataStream cas;
+    AudioInputStream ais;
+    Clip clip;
+    String fileName;
 
-    public Music(String fileName) throws IOException
+    public Music(String fileName) throws IOException, UnsupportedAudioFileException, LineUnavailableException
     {
         try {
-            in = new FileInputStream("sounds/"+fileName+".wav");
-            as = new AudioStream(in);
-            //data = as.getData();
-            //cas = new ContinuousAudioDataStream (data);
+            this.fileName = fileName;
+            ais = AudioSystem.getAudioInputStream(new File("src/sounds/"+this.fileName+".wav"));
+            clip = AudioSystem.getClip();
+            clip.open(ais);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Music.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -42,11 +42,20 @@ public class Music {
     
     public void startSound()
     {
-        AudioPlayer.player.start(as);  
+        clip.loop(LOOP_CONTINUOUSLY);
+        if(fileName.equalsIgnoreCase("hey"))
+        {
+            clip.setLoopPoints(0, 2835000);
+        }
+        else
+        {
+            clip.setLoopPoints(0, -1);
+        }
     }
     public void stopSound()
     {
-        AudioPlayer.player.stop(as);
+        clip.stop();
+        clip.setFramePosition(0);
     }
     
 }

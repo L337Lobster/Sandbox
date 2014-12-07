@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import settings.Setting;
 import util.XML_240;
 
@@ -48,7 +50,7 @@ public class GamePanel extends JPanel implements ActionListener
     
     
     
-    public GamePanel(int width, int height)
+    public GamePanel(int width, int height) throws UnsupportedAudioFileException, LineUnavailableException
     
     {
         super();

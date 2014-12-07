@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 /**
  * Java class for creating the a custom swing JPanel for the credits.
@@ -41,7 +43,7 @@ public class CreditsPanel extends JPanel implements ActionListener{
      * @param height Height of the parent JFrame
      * @param width Width of the parent JFrame
      */
-    public CreditsPanel(Credits credits, int height, int width)
+    public CreditsPanel(Credits credits, int height, int width) throws UnsupportedAudioFileException, LineUnavailableException
     {        
         super();
         try {

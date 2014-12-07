@@ -16,6 +16,8 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import settings.Setting;
 import util.XML_240;
@@ -39,7 +41,7 @@ public class SplashPanel extends JPanel
      * @param width Width of the parent JFrame
      * @since version 1.00
      */
-    public SplashPanel(int height, int width)
+    public SplashPanel(int height, int width) throws UnsupportedAudioFileException, LineUnavailableException
     {
         super();
         try {

@@ -20,6 +20,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import settings.Setting;
@@ -48,7 +52,7 @@ public class MainFrame extends JFrame implements ActionListener
     * @author Jackson
     * @version 1.00
     */
-    public MainFrame ()
+    public MainFrame () throws UnsupportedAudioFileException, LineUnavailableException
     {
         super ("Game");
         x2 = new XML_240();
@@ -204,7 +208,13 @@ public class MainFrame extends JFrame implements ActionListener
         if(obj == splash.creditsButton) 
         { 
             credits.resetBounds();
-            credits = new CreditsPanel(new Credits(), HEIGHT, WIDTH);
+            try {
+                credits = new CreditsPanel(new Credits(), HEIGHT, WIDTH);
+            } catch (UnsupportedAudioFileException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (LineUnavailableException ex) {
+                Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
             credits.back.addActionListener(this);
             if(musicOn)
             {
