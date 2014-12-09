@@ -46,6 +46,7 @@ public class MainFrame extends JFrame implements ActionListener
     Setting music;
     boolean musicOn;
     XML_240 x2;
+    PlayerListener playerMoving;
     int HEIGHT = 600, WIDTH = 800;
     /**
     * Constructor for class
@@ -86,7 +87,7 @@ public class MainFrame extends JFrame implements ActionListener
         game.back.addActionListener(this);
         instructions.back.addActionListener(this);
         settings.back.addActionListener(this);
-        PlayerListener playerMoving = new PlayerListener();
+        playerMoving = new PlayerListener();
         game.setFocusable(true);
         game.addKeyListener(playerMoving);
         getContentPane().add(splash,"Center");
@@ -262,6 +263,11 @@ public class MainFrame extends JFrame implements ActionListener
             splash.resetBounds();
             game.tim.stop();
             game.resetGame();
+            game.penaltyHit = false;
+            game.penaltyT.stop();
+            game.penalty = 10;
+            game.penaltyL.setText("Penalty Timer: " + game.penalty);
+            game.playerMoving = true;
             if(musicOn)
             {
                 splash.getMusic().startSound();
