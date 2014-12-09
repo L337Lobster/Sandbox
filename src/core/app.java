@@ -8,6 +8,8 @@ Changelog
 package core;
 
 import credits.Credits;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * Main class for the project.
@@ -19,7 +21,7 @@ public class app {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException {
         
         MainFrame mjf = new MainFrame();
         mjf.setLocationRelativeTo(null);
