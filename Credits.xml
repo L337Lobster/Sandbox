@@ -21,11 +21,6 @@
     <string>Option Class</string>
    </void>
   </void>
-  <void property="contribution">
-   <void method="add">
-    <string>Music</string>
-   </void>
-  </void>
   <void property="firstName">
    <string>Jackson</string>
   </void>
@@ -38,13 +33,9 @@
    <void method="add">
     <string>Created and added sprites</string>
    </void>
-  </void>
-  <void property="contribution">
    <void method="add">
     <string>Helped make player move</string>
    </void>
-  </void>
-  <void property="contribution">
    <void method="add">
     <string>Instructions panel</string>
    </void>
@@ -61,13 +52,9 @@
    <void method="add">
     <string>Core idea</string>
    </void>
-  </void>
-  <void property="contribution">
    <void method="add">
     <string>Helped make player move</string>
    </void>
-  </void>
-  <void property="contribution">
    <void method="add">
     <string>Penalty idea and code</string>
    </void>
