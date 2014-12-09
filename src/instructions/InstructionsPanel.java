@@ -15,7 +15,7 @@ import util.XML_240;
 
 /**
  * Java class for creating the a custom swing JPanel.
- * @author Jackson
+ * @author Jackson, Michelle
  * @version 1.00
  */
 public class InstructionsPanel extends JPanel

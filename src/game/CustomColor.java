@@ -9,7 +9,7 @@ package game;
 import java.awt.Color;
 
 /**
- *
+ * Enumeration type for custom colors.
  * @author jph5321
  */
 public enum CustomColor {

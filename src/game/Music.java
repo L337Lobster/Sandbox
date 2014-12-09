@@ -17,7 +17,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
- *
+ * Custom music loader and processor.
  * @author Jack
  */
 public class Music {
