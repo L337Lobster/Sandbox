@@ -27,6 +27,14 @@ public class Music {
     Clip clip;
     String fileName;
 
+    /**
+     * Constructor for the music class.
+     * Creates an audio stream from a sound file.
+     * @param fileName
+     * @throws IOException
+     * @throws UnsupportedAudioFileException
+     * @throws LineUnavailableException
+     */
     public Music(String fileName) throws IOException, UnsupportedAudioFileException, LineUnavailableException
     {
         try {
@@ -39,7 +47,12 @@ public class Music {
         }
     }
 
-    
+    /**
+     * Starts the sound.
+     * All sounds used are background music so it loops them.
+     * If it's the menu music "hey" it sets the loop so it doesn't pause at the end
+     * Otherwise it sets the loop points as the beginning and end.
+     */
     public void startSound()
     {
         clip.loop(LOOP_CONTINUOUSLY);
@@ -52,6 +65,10 @@ public class Music {
             clip.setLoopPoints(0, -1);
         }
     }
+
+    /**
+     * Stops the looping music and resets it to the begining.
+     */
     public void stopSound()
     {
         clip.stop();

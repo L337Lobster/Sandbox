@@ -52,6 +52,8 @@ public class MainFrame extends JFrame implements ActionListener
     * Constructor for class
     * @author Jackson
     * @version 1.00
+     * @throws javax.sound.sampled.UnsupportedAudioFileException
+     * @throws javax.sound.sampled.LineUnavailableException
     */
     public MainFrame () throws UnsupportedAudioFileException, LineUnavailableException
     {
@@ -96,6 +98,11 @@ public class MainFrame extends JFrame implements ActionListener
         refreshSize();
         setVisible(true);
     }
+
+    /**
+     * Loads whether music is turned on or off in the settings from file.
+     * The after loading that it sets the boolean for it.
+     */
     public void loadMusic()
     {
         x2.openReaderXML("Options.xml");

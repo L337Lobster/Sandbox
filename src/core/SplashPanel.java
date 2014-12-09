@@ -39,6 +39,8 @@ public class SplashPanel extends JPanel
      * Constructor for the class
      * @param height Height of the parent JFrame
      * @param width Width of the parent JFrame
+     * @throws javax.sound.sampled.UnsupportedAudioFileException
+     * @throws javax.sound.sampled.LineUnavailableException
      * @since version 1.00
      */
     public SplashPanel(int height, int width) throws UnsupportedAudioFileException, LineUnavailableException
@@ -72,6 +74,11 @@ public class SplashPanel extends JPanel
         setBackground(Color.gray);
         loadMusic();
     }
+
+    /**
+     * Returns the the music that this panel is playing.
+     * @return hey The music class for this panel.
+     */
     public Music getMusic()
     {
         return this.hey;
@@ -86,6 +93,12 @@ public class SplashPanel extends JPanel
         instructionsButton.setBounds(new Rectangle(((WIDTH/3*2)-100), ((HEIGHT/3*2)-100), 200, 50));
         settingsButton.setBounds(new Rectangle(((WIDTH/3)-100), ((HEIGHT/3*2)-100), 200, 50));
     }
+
+    /**
+     * Loads music and resolution settings in the settings from file.
+     * Starts or stops the music depending on value of music setting.
+     * If it's on starts it and if it's off stops it.
+     */
     public void loadMusic()
     {
         x2.openReaderXML("Options.xml");
@@ -103,6 +116,13 @@ public class SplashPanel extends JPanel
             hey.stopSound();
         }
     }
+
+    /**
+     * Paints the background image.
+     * Creates the images used for the different resolutions.
+     * Then sets the one that is used based on the resolution setting.
+     * @param g
+     */
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);

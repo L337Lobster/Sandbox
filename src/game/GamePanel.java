@@ -48,8 +48,14 @@ public class GamePanel extends JPanel implements ActionListener
     public boolean playerMoving = true, penaltyHit = false;
     boolean movingUp;
     
-    
-    
+    /**
+     * Constructor for the Game Panel.
+     * Creates the initial panel components.
+     * @param width width of the panel,
+     * @param height height of the panel.
+     * @throws UnsupportedAudioFileException
+     * @throws LineUnavailableException
+     */
     public GamePanel(int width, int height) throws UnsupportedAudioFileException, LineUnavailableException
     
     {
@@ -109,6 +115,10 @@ public class GamePanel extends JPanel implements ActionListener
         setDifficulty();
         
     }
+
+    /**
+     * Sets the difficulty numbers based on the current difficulty setting.
+     */
     public final void setDifficulty()
     {
         switch(difficulty.getSettingValue())
@@ -127,6 +137,11 @@ public class GamePanel extends JPanel implements ActionListener
                 break;
         }
     }
+
+    /**
+     * Returns the music for this panel.
+     * @return psuMedly
+     */
     public Music getMusic()
     {
         return this.psuMedly;
@@ -155,6 +170,10 @@ public class GamePanel extends JPanel implements ActionListener
         x2.closeReaderXML();
         
     }
+
+    /**
+     * Resets the game back to the starting parameters.
+     */
     public void resetGame()
     {
         penaltyHit = false;
@@ -213,6 +232,13 @@ public class GamePanel extends JPanel implements ActionListener
                 blockerDifficulty+=3;
             }
     }
+
+    /**
+     * Action listener for the timers.
+     * Penalty timer uses this to decrement the visual timer and change the text.
+     * The main timer is uses this to move the player and blockers as well as detect collision.
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
@@ -292,6 +318,11 @@ public class GamePanel extends JPanel implements ActionListener
             this.repaint();            
         }        
     }
+
+    /**
+     * Paints the background image, player, and blockers.
+     * @param g
+     */
     @Override
     public void paintComponent(Graphics g)
     {

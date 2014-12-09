@@ -42,6 +42,8 @@ public class CreditsPanel extends JPanel implements ActionListener{
      * @param credits a variable of type Credits
      * @param height Height of the parent JFrame
      * @param width Width of the parent JFrame
+     * @throws javax.sound.sampled.UnsupportedAudioFileException
+     * @throws javax.sound.sampled.LineUnavailableException
      */
     public CreditsPanel(Credits credits, int height, int width) throws UnsupportedAudioFileException, LineUnavailableException
     {        
@@ -95,6 +97,10 @@ public class CreditsPanel extends JPanel implements ActionListener{
         
         
     }
+    /**
+     * Returns the the music that this panel is playing.
+     * @return almaMater The music class for this panel.
+     */
     public Music getMusic()
     {
         return this.almaMater;

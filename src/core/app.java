@@ -20,6 +20,8 @@ public class app {
 
     /**
      * @param args the command line arguments
+     * @throws javax.sound.sampled.UnsupportedAudioFileException
+     * @throws javax.sound.sampled.LineUnavailableException
      */
     public static void main(String[] args) throws UnsupportedAudioFileException, LineUnavailableException {
         

@@ -166,6 +166,9 @@ public class SettingsPanel extends JPanel
         }
         
     }
+    /**
+     * Load from file and save the current resolution setting.
+     */
     public void loadRes()
     {
         XML_240 x2 = new XML_240();
@@ -175,6 +178,10 @@ public class SettingsPanel extends JPanel
         x2.ReadObject();
         x2.closeReaderXML();
     }
+    /**
+     * Paints the background image and rectangles behind the text for easy reading.
+     * @param g 
+     */
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);

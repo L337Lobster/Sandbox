@@ -66,6 +66,10 @@ public class InstructionsPanel extends JPanel
         int y = (this.height - (this.height/2))/2;
         directions.setBounds(new Rectangle(x,y,this.width/2,this.height/2));
     }
+    /**
+     * Loads the current resolution setting from file.
+     * Then saves it as an object in this panel for later use.
+     */
     public void loadRes()
     {
         XML_240 x2 = new XML_240();
@@ -75,6 +79,10 @@ public class InstructionsPanel extends JPanel
         x2.ReadObject();
         x2.closeReaderXML();
     }
+    /**
+     * Paints the background and a rectangle for easy reading behind the text.
+     * @param g 
+     */
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
